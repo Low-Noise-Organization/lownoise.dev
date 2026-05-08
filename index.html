@@ -2,537 +2,583 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adrián Velasco — Software Developer</title>
-  <meta name="description"
-    content="Portfolio de Adrián Velasco, desarrollador backend especializado en Java, ciberseguridad y sistemas. Proyectos y contacto." />
-  <meta name="author" content="Adrián Velasco Mañas" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" />
-  <!-- En el head, después de los estilos -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrian Velasco Mañas — Backend Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Syne:wght@400..800&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <a href="#main" class="skip-link">Saltar al contenido</a>
 
-  <header class="nav" id="nav">
-    <a class="nav__logo" href="#">A<span>.</span>V<span>.</span>M<span>.</span></a>
-    <nav class="nav__links" aria-label="Navegación principal">
-      <a href="#about" class="nav__link" aria-current="page">Acerca</a>
-      <a href="#skills" class="nav__link">Habilidades</a>
-      <a href="#projects" class="nav__link">Proyectos</a>
-      <a href="#contact" class="nav__link">Contacto</a>
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- ============================================================
+     PRELOADER
+     ============================================================ -->
+    <div id="preloader">
+        <div id="pre-logs"></div>
+        <div class="pre-bar-wrap" id="pre-bar-wrap" style="opacity:0">
+            <div class="pre-bar-label">INITIALIZING PORTFOLIO_OS v3.0</div>
+            <div class="pre-bar-track">
+                <div class="pre-bar-fill" id="pre-bar"></div>
+            </div>
+            <div class="pre-version" style="margin-top:8px">build: 2025.06 — node: COR-01</div>
+        </div>
+        <button class="pre-skip" id="pre-skip">SKIP INTRO ↵</button>
+    </div>
+
+    <!-- ============================================================
+     NAV
+     ============================================================ -->
+    <nav id="nav">
+        <a href="#hero" class="nav-logo">
+            <div class="nav-logo-dot"></div>
+            AVM.dev
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">Sobre Mi</a></li>
+            <li><a href="#stack">Tecnologias</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#github">GitHub</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
     </nav>
-    <a href="#contact" class="nav__cta">Contacto</a>
-  </header>
 
-  <main id="main">
-    <section class="hero" id="hero" aria-label="Presentación">
+    <!-- ============================================================
+     HERO
+     ============================================================ -->
+    <section id="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
 
-      <!-- Fondo multicapa -->
-      <div class="hero-bg" aria-hidden="true">
-        <div class="hbg-dots"></div>
-        <div class="hbg-glow hbg-glow--1"></div>
-        <div class="hbg-glow hbg-glow--2"></div>
-        <div class="hbg-glow hbg-glow--3"></div>
-        <div class="hbg-grid"></div>
-      </div>
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-status">
+                    <div class="hero-status-dot"></div>
+                    Disponible para proyectos &nbsp;·&nbsp; Córdoba, España
+                </div>
 
-      <!-- Número de sección -->
-      <span class="hero-num" aria-hidden="true">01</span>
+                <p class="hero-greeting">// hola, soy</p>
 
-      <!-- Layout bicolumna -->
-      <div class="hero-layout">
+                <h1 class="hero-name">
+                    Adrian<br><span class="hero-name-accent">Velasco</span>
+                </h1>
 
-        <!-- ── Copy izquierda ── -->
-        <div class="hero-copy">
-          <p class="hero-eyebrow">
-            <span class="hero-eyebrow__dot" aria-hidden="true"></span>
-            Dispuesto a Aprender · Córdoba, ES
-          </p>
-          <h1 class="hero-title">
-            Construyendo Software<br>
-            <em>de Calidad.</em>
-          </h1>
-          <p class="hero-sub">
-            Desarrollador de Software enfocado en la arquitectura
-            backend, seguridad y diseño de proyectos.
-            Escribir codigo que escale sin fallar
-          </p>
-          <div class="hero-actions">
-            <a href="#projects" class="btn btn--primary">Ver trabajo</a>
-            <a href="#contact" class="btn btn--ghost">Contáctame</a>
-          </div>
-          <!-- Quick stats -->
-          <div class="hero-stats">
-            <div class="hstat">
-              <span class="hstat__n">2+</span>
-              <span class="hstat__l">Años de exp.</span>
+                <div class="hero-tagline-wrap">
+                    <span class="prefix">→</span>
+                    <span id="typed-text"></span>
+                    <span class="cursor-blink"></span>
+                </div>
+
+                <p class="hero-desc">
+                    Desarrollador backend de 19 años con mentalidad autodidacta. Construyo sistemas sólidos, automatizo
+                    lo
+                    que sea automatizable y aprendo sin parar. Obsesionado con el código limpio y el software que
+                    realmente
+                    importa.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-primary">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                        Ver proyectos
+                    </a>
+                    <a href="https://github.com/Adri-Coding-Dev" target="_blank" class="btn-secondary">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
             </div>
-            <div class="hstat__sep" aria-hidden="true"></div>
-            <div class="hstat">
-              <span class="hstat__n">30+</span>
-              <span class="hstat__l">Proyectos</span>
+
+            <div class="hero-image-wrapper">
+                <div class="hero-image-frame">
+                    <div class="hero-image-blob-2"></div>
+                    <div class="hero-image-blob-1"></div>
+                    <div class="hero-image-square">
+                        <img src="assets/FotoPerfil.png" alt="Adrian Velasco" class="hero-image">
+                    </div>
+                </div>
             </div>
-            <div class="hstat__sep" aria-hidden="true"></div>
-            <div class="hstat">
-              <span class="hstat__n">45+</span>
-              <span class="hstat__l">Subs.</span>
-            </div>
-          </div>
         </div>
 
-        <div class="hero-badge-col" id="lanyardWrap">
-
-          <!-- Gancho superior -->
-          <div class="anchor" id="anchor" aria-hidden="true">
-            <div class="anchor__cap"></div>
-            <div class="anchor__body">
-              <div class="anchor__eye"></div>
-            </div>
-          </div>
-
-          <!-- Cuerda: JS actualiza x1,y1,x2,y2 cada frame -->
-          <svg class="rope-svg" id="ropeSvg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-            <line id="ropeStrand1" stroke="#c8a83a" stroke-width="2" stroke-linecap="round" />
-            <line id="ropeStrand2" stroke="#7a6018" stroke-width="1" stroke-linecap="round" opacity=".55" />
-            <line id="ropeStrand3" stroke="#e0c060" stroke-width=".7" stroke-linecap="round" opacity=".4" />
-          </svg>
-
-          <!-- Badge: JS escribe transform cada frame -->
-          <article class="badge" id="badge" role="article" tabindex="0"
-            aria-label="Tarjeta de presentación de Adrián Velasco">
-
-            <div class="badge__hole" aria-hidden="true">
-              <div class="badge__hole-inner"></div>
-            </div>
-            <div class="badge__band" aria-hidden="true">
-              <span class="badge__band-text">DEV.CONF · 2025</span>
-            </div>
-            <div class="badge__photo-wrap">
-              <div class="badge__photo" role="img" aria-label="Foto de Adrián Velasco">
-                <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="50" cy="36" r="22" fill="#3a4a6b" />
-                  <path d="M10,110 Q10,72 50,68 Q90,72 90,110" fill="#3a4a6b" />
-                </svg>
-              </div>
-              <div class="badge__status" title="Disponible" aria-hidden="true">
-                <span class="badge__status-dot"></span>
-              </div>
-            </div>
-            <div class="badge__info">
-              <h2 class="badge__name">Adrián Velasco</h2>
-              <p class="badge__role">Desarrollador Backend</p>
-              <div class="badge__divider" aria-hidden="true">
-                <span class="badge__divider-line"></span>
-                <span class="badge__divider-gem">◆</span>
-                <span class="badge__divider-line"></span>
-              </div>
-              <ul class="badge__tags" aria-label="Especialización">
-                <li class="badge__tag badge__tag--hi">Java</li>
-                <li class="badge__tag badge__tag--yellow">Ciber</li>
-                <li class="badge__tag badge__tag--blue">Sistemas</li>
-              </ul>
-            </div>
-            <footer class="badge__footer" aria-hidden="true">
-              <!-- Dentro de .badge__footer, reemplazamos el contenido anterior -->
-              <div class="badge__qr" id="qrContainer" title="Escanea para ir a GitHub"></div>
-              <div class="badge__id">
-                <span class="badge__id-label">ID</span>
-                <span class="badge__id-value">#AVM·2025</span>
-              </div>
-            </footer>
-            <div class="badge__glare" id="badgeGlare" aria-hidden="true"></div>
-          </article>
-
-          <p class="hero-hint" id="heroHint">
-            <span aria-hidden="true">↕</span> Tira del cartel
-          </p>
-
-        </div><!-- /hero-badge-col -->
-
-      </div><!-- /hero-layout -->
-
-      <!-- Flecha scroll -->
-      <div class="hero-scroll" aria-hidden="true">
-        <div class="hero-scroll__track">
-          <div class="hero-scroll__thumb"></div>
+        <div class="hero-meta">
+            19 años · Backend Dev<br>
+            Java · Kotlin · Bash
         </div>
-        <span class="hero-scroll__label">scroll</span>
-      </div>
-
     </section>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-eyebrow" aria-hidden="true">
-          <span class="section-eyebrow__num">02</span>
-          <span class="section-eyebrow__line"></span>
-          <span class="section-eyebrow__text">Acerca</span>
+    <!-- ============================================================
+     ABOUT
+     ============================================================ -->
+    <section id="about">
+        <div class="reveal">
+            <div class="section-label">01 — Sobre Mi</div>
+            <h2 class="section-heading">El sistema detrás<br>del código</h2>
         </div>
 
         <div class="about-grid">
+            <div class="about-text reveal">
+                <p>
+                    Con 19 años y nacido en <strong>Córdoba, España</strong>, no espero a que alguien me enseñe: busco,
+                    fallo, entiendo y construyo. Mi entorno principal es <strong>Fedora Linux</strong>, mi herramienta
+                    de
+                    depuración favorita es el terminal y mis proyectos no terminan hasta que el código es lo que yo
+                    busco.
+                </p>
+                <p>
+                    Me especializo en el <strong>backend</strong>: la lógica que no se ve pero que sostiene todo. Java y
+                    Kotlin para aplicaciones robustas; Python para automatización y scripting, Bash para cuando necesito
+                    que el sistema haga lo que yo quiero, no al revés.
+                </p>
+                <p>
+                    Cada proyecto que lanzo es un experimento: <span class="highlight">¿qué puedo aprender construyendo
+                        esto?</span> El resultado importa, pero el proceso de entenderlo todo importa más.
+                </p>
 
-          <!-- Imagen -->
-          <div class="about-visual">
-            <div class="about-photo">
-              <svg viewBox="0 0 360 440" xmlns="http://www.w3.org/2000/svg" aria-label="Retrato de Adrián Velasco"
-                role="img">
-                <defs>
-                  <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#18254a" />
-                    <stop offset="100%" stop-color="#080c1a" />
-                  </linearGradient>
-                  <radialGradient id="glow" cx="50%" cy="35%" r="55%">
-                    <stop offset="0%" stop-color="#4b82f5" stop-opacity=".18" />
-                    <stop offset="100%" stop-color="transparent" />
-                  </radialGradient>
-                </defs>
-                <rect width="360" height="440" fill="url(#pg)" />
-                <ellipse cx="180" cy="160" rx="180" ry="160" fill="url(#glow)" />
-                <!-- Silueta -->
-                <circle cx="180" cy="140" r="68" fill="#253660" />
-                <path d="M30,440 Q30,280 180,262 Q330,280 330,440" fill="#253660" />
-                <!-- Detalles ropa -->
-                <path d="M108,310 L180,262 L252,310 L272,440 L88,440Z" fill="#1b2a52" opacity=".8" />
-                <line x1="180" y1="262" x2="180" y2="380" stroke="#4b82f5" stroke-width="1.5" opacity=".25" />
-                <!-- Reflejos cara -->
-                <circle cx="165" cy="128" r="4" fill="white" opacity=".06" />
-              </svg>
-              <div class="about-photo__badge" aria-hidden="true">
-                <span class="about-photo__badge-dot"></span>
-                Abierto a trabajar
-              </div>
-            </div>
-            <!-- Tarjeta flotante experiencia -->
-            <div class="about-card about-card--exp" aria-hidden="true">
-              <span class="about-card__num">2+</span>
-              <span class="about-card__label">Años de experiencia</span>
-            </div>
-            <!-- Tarjeta flotante stack -->
-            <div class="about-card about-card--stack" aria-hidden="true">
-              <div class="about-card__dots">
-                <span style="background:#4b82f5"></span>
-                <span style="background:#00c9a0"></span>
-                <span style="background:#c8a83a"></span>
-              </div>
-              <span class="about-card__label">Java · Cyber · Sistemas</span>
-            </div>
-          </div>
-
-          <!-- Texto -->
-          <div class="about-body">
-            <h2 class="section-title">
-              Dedicado al backend<br>
-              <em>pero apto a aprender.</em>
-            </h2>
-            <div class="about-prose">
-              <p>
-                Soy un desarrollador de software de España, especializado en backend,
-                enfocado en Java, aunque también tengo conocimientos básicos de desarrollo web
-                y lenguajes como JavaScript o Python. Me importa profundamente
-                escribir software que sea correcto, mantenible y escalable.
-              </p>
-              <p>
-                Mi experiencia abarca Java, programación orientada a objetos y
-                optimizacion de código.
-              </p>
-              <p>
-                Fuera del grado, dedico tiempo personal en formarme en ciberseguridad, centrandome
-                en red team y pentesting, tanto en webs como en sistemas completos.
-              </p>
-            </div>
-            <div class="about-chips">
-              <span class="chip">Remoto</span>
-              <span class="chip">EU</span>
-              <span class="chip">Inglés &amp; Español</span>
-              <span class="chip">Seguridad ante todo</span>
-            </div>
-            <a href="#contact" class="btn btn--primary" style="margin-top:2.5rem">Hablemos</a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="skills">
-      <div class="container">
-        <div class="section-eyebrow" aria-hidden="true">
-          <span class="section-eyebrow__num">03</span>
-          <span class="section-eyebrow__line"></span>
-          <span class="section-eyebrow__text">Habilidades</span>
-        </div>
-        <h2 class="section-title">
-          Herramientas con las que<br>
-          <em>trabajo.</em>
-        </h2>
-
-        <div class="skills-grid">
-
-          <div class="skill-card">
-            <div class="skill-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 28s-2 1.2 1.4 1.6c4 .5 6 .4 10.4-.4 0 0 1.2.7 2.8 1.3C20.2 33 8.6 31.8 14 28z"
-                  fill="#4b82f5" />
-                <path d="M12.6 24.2s-2.2 1.6 1.2 2c4.4.4 7.8.4 13.8-.6 0 0 .8.8 2 1.4C19.2 29.4 6 29 12.6 24.2z"
-                  fill="#4b82f5" />
-                <path
-                  d="M21.2 17.4c2.4 2.8.6 5.4.6 5.4s6.2-3.2 3.4-7.2c-2.6-3.8-4.6-5.6 6.2-12C31.4 3.6 16.2 7.8 21.2 17.4z"
-                  fill="#4b82f5" />
-                <path
-                  d="M30 30.4s1.6 1.3-1.8 2.4c-6.2 1.8-26 2.4-32-.1-2-.9 1.8-2 3-2.3 1.2-.2 2-.2 2-.2-2.4-1.6-15.2 3.2-6.6 4.6 23.6 3.8 43-1.7 35.4-4.4z"
-                  fill="#4b82f5" />
-              </svg>
-            </div>
-            <h3 class="skill-card__name">Java</h3>
-            <p class="skill-card__desc">Maven, JUnit y Swing. Backends de nivel empresarial diseñados
-              para la fiabilidad.
-            </p>
-            <div class="skill-bar">
-              <div class="skill-bar__fill" style="--w:92%"></div>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="6" y="6" width="28" height="28" rx="4" stroke="#00c9a0" stroke-width="1.5" />
-                <path d="M13 20l5 5 9-10" stroke="#00c9a0" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
-            <h3 class="skill-card__name">Desarrollo seguro</h3>
-            <p class="skill-card__desc">Control de calidad, Testing seguro, pentesting.</p>
-            <div class="skill-bar">
-              <div class="skill-bar__fill skill-bar__fill--t" style="--w:88%"></div>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="20" cy="14" rx="13" ry="5" stroke="#00c9a0" stroke-width="1.5" />
-                <path d="M7 14v12c0 2.8 5.8 5 13 5s13-2.2 13-5V14" stroke="#00c9a0" stroke-width="1.5" />
-                <path d="M7 20c0 2.8 5.8 5 13 5s13-2.2 13-5" stroke="#00c9a0" stroke-width="1.5" />
-              </svg>
-            </div>
-            <h3 class="skill-card__name">Bases de Datos</h3>
-            <p class="skill-card__desc">PostgreSQL, MySQL, MongoDB. Optimizacion y modelaje.</p>
-            <div class="skill-bar">
-              <div class="skill-bar__fill skill-bar__fill--t" style="--w:82%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-eyebrow" aria-hidden="true">
-          <span class="section-eyebrow__num">04</span>
-          <span class="section-eyebrow__line"></span>
-          <span class="section-eyebrow__text">Proyectos</span>
-        </div>
-
-        <h2 class="section-title">Mis proyectos</h2>
-
-        <div class="projects-list">
-
-          <!-- Featured -->
-          <article class="proj proj--featured">
-            <div class="proj__left">
-              <div class="proj__meta">
-                <span class="proj__num">01</span>
-                <div class="proj__tags">
-                  <span class="ptag">Java</span>
-                  <span class="ptag">Swing</span>
-                  <span class="ptag">Cryptography</span>
-                  <span class="ptag">SHA-256</span>
+                <div class="terminal-card" style="margin-top:32px">
+                    <div class="terminal-header">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
+                        <span class="terminal-title">adrian@fedora ~ $</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="t-prompt">❯</span>
+                            <span class="t-cmd">whoami</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="t-out">Adrian Velasco Mañas — Backend Developer</span>
+                        </div>
+                        <div class="terminal-line" style="margin-top:8px">
+                            <span class="t-prompt">❯</span>
+                            <span class="t-cmd">cat interests.txt</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="t-out"># backend · automatización · linux · seguridad</span>
+                        </div>
+                        <div class="terminal-line" style="margin-top:8px">
+                            <span class="t-prompt">❯</span>
+                            <span class="t-cmd">uptime</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="t-out">aprendiendo desde hace 2+ años</span>
+                        </div>
+                        <div class="terminal-line" style="margin-top:8px">
+                            <span class="t-prompt">❯</span>
+                            <span class="t-cmd" id="terminal-type-cmd"></span>
+                            <span class="cursor-blink"
+                                style="display:inline-block;width:2px;height:1.1em;background:var(--accent-3);vertical-align:text-bottom;"></span>
+                        </div>
+                    </div>
                 </div>
-              </div>
-
-              <h3 class="proj__title">CipherKey</h3>
-
-              <p class="proj__desc">
-                Gestor de contraseñas local desarrollado en Java que implementa
-                almacenamiento seguro mediante hashing y mecanismos criptográficos.
-                El objetivo del proyecto es explorar la gestión segura de credenciales
-                y el diseño de aplicaciones orientadas a privacidad donde todos los
-                datos permanecen bajo control del usuario.
-              </p>
-
-              <a href="https://github.com/Adri-Coding-Dev/CipherKey" class="btn btn--ghost btn--sm" target="_blank"
-                rel="noopener">
-                Ver proyecto →
-              </a>
             </div>
 
-            <div class="proj__right" aria-hidden="true">
-              <div class="proj-image">
-                <img src="/assets/logo.png" alt="Vista previa de CipherKey password manager" loading="lazy" />
-              </div>
+            <div class="reveal" style="transition-delay:0.15s">
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Años programando</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Proyectos activos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Tecnologías</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Curiosidad técnica</div>
+                    </div>
+                </div>
             </div>
-          </article><br>
-
-          <div class="proj-row">
-
-            <!-- Project 2 -->
-            <article class="proj-card">
-              <div class="proj-card__num">02</div>
-
-              <div class="proj-card__tags">
-                <span class="ptag">Java</span>
-                <span class="ptag">Swing</span>
-                <span class="ptag">Algorithms</span>
-              </div>
-
-              <h3 class="proj-card__title">Master Chess</h3>
-
-              <p class="proj-card__desc">
-                Implementación completa de ajedrez desarrollada en Java con interfaz
-                gráfica en Swing. Incluye toda la lógica del juego, validación de
-                movimientos y arquitectura limpia orientada a mantener separada la
-                lógica del dominio y la interfaz gráfica.
-              </p>
-
-              <a href="https://github.com/Adri-Coding-Dev/Master_Chess" class="proj-card__link" target="_blank"
-                rel="noopener">
-                Ver →
-              </a>
-            </article>
-
-            <!-- Project 3 -->
-            <article class="proj-card">
-              <div class="proj-card__num">03</div>
-
-              <div class="proj-card__tags">
-                <span class="ptag">Java</span>
-                <span class="ptag">Maven</span>
-                <span class="ptag">Clean Architecture</span>
-              </div>
-
-              <h3 class="proj-card__title">Community Game World</h3>
-
-              <p class="proj-card__desc">
-                Proyecto experimental desarrollado junto a una comunidad de YouTube
-                donde los seguidores proponen mecánicas, algoritmos e ideas de diseño.
-                El objetivo es construir un sistema evolutivo donde la arquitectura
-                permita escalar funcionalidades conforme crece la comunidad.
-              </p>
-
-              <a href="#" class="proj-card__link">Ver →</a>
-            </article>
-
-            <!-- Project 4 -->
-            <article class="proj-card">
-              <div class="proj-card__num">04</div>
-
-              <div class="proj-card__tags">
-                <span class="ptag">Java</span>
-                <span class="ptag">Algorithms</span>
-                <span class="ptag">Problem Solving</span>
-              </div>
-
-              <h3 class="proj-card__title">Advent of Code 2025</h3>
-
-              <p class="proj-card__desc">
-                Colección de soluciones en Java para los desafíos de Advent of Code 2025.
-                Cada ejercicio se centra en estructuras de datos, optimización algorítmica
-                y resolución de problemas complejos.
-              </p>
-
-              <a href="https://github.com/Adri-Coding-Dev/Advent_of_Code_Java" class="proj-card__link" target="_blank"
-                rel="noopener">
-                Ver →
-              </a>
-            </article>
-
-          </div>
         </div>
-      </div>
     </section>
 
-    <section class="section section--alt section--contact" id="contact">
-      <div class="container">
-        <div class="section-eyebrow" aria-hidden="true">
-          <span class="section-eyebrow__num">05</span>
-          <span class="section-eyebrow__line"></span>
-          <span class="section-eyebrow__text">Contacto</span>
+    <!-- ============================================================
+     STACK
+     ============================================================ -->
+    <section id="stack">
+        <div class="stack-heading-wrap">
+            <div class="section-label reveal">02 — Herramientas</div>
+            <h2 class="section-heading reveal">Las herramientas<br>del oficio</h2>
         </div>
 
-        <div class="contact-grid">
+        <div class="stack-grid">
+            <!-- Java -->
+            <div class="tech-card reveal" style="--card-accent:#f89820">
+                <div class="tech-icon"><i class="fa-brands fa-java"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">Java</div>
+                    <div class="tech-tag">Backend · Escritorio</div>
+                </div>
+                <div class="tech-level" style="color:#f89820">Principal</div>
+            </div>
 
-          <div class="contact-body">
-            <h2 class="section-title">
-              Construyamos<br>
-              <em>algo serio.</em>
-            </h2>
-            <p class="contact-sub">
-              Abierto a proyectos freelance, posiciones a tiempo completo y consultoría técnica.
-              Respondo en menos de 24 horas.
-            </p>
-            <div class="contact-links">
-              <a href="mailto:adricoding647@gmail.com" class="clink" rel="me">
-                <span class="clink__icon" aria-hidden="true">✉</span>
-                <span>adricoding647@gmail.com</span>
-              </a>
-              <a href="https://github.com/Adri-Coding-Dev" class="clink" target="_blank" rel="noopener me">
-                <span class="clink__icon" aria-hidden="true">
-                  <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M10 0C4.48 0 0 4.58 0 10.23c0 4.52 2.87 8.35 6.84 9.7.5.09.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.4 9.4 0 0110 4.84c.85 0 1.7.12 2.5.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.81c0 .27.18.59.69.49C17.14 18.57 20 14.74 20 10.23 20 4.58 15.52 0 10 0z" />
-                  </svg>
-                </span>
-                Adri-Coding-Dev
-              </a>
-              <a href="https://www.linkedin.com/in/adri%C3%A1n-velasco-ma%C3%B1as-0a11733a5/" class="clink"
-                target="_blank" rel="noopener me">
-                <span class="clink__icon" aria-hidden="true">in</span>
-                linkedin
-              </a>
+            <!-- Kotlin -->
+            <div class="tech-card reveal" style="--card-accent:#7b61ff;transition-delay:0.05s">
+                <div class="tech-icon"><i class="devicon-kotlin-plain"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">Kotlin</div>
+                    <div class="tech-tag">JVM · Android</div>
+                </div>
+                <div class="tech-level" style="color:#7b61ff">Intermedio</div>
             </div>
-          </div>
 
-          <form class="contact-form" id="contactForm" action="#" method="post">
-            <div class="form-field">
-              <label class="form-label" for="cf-name">Nombre</label>
-              <input class="form-input" id="cf-name" type="text" placeholder="Tu nombre" autocomplete="name" required />
+            <!-- Python -->
+            <div class="tech-card reveal" style="--card-accent:#3776ab;transition-delay:0.1s">
+                <div class="tech-icon"><i class="fa-brands fa-python"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">Python</div>
+                    <div class="tech-tag">Scripting · Automatización</div>
+                </div>
+                <div class="tech-level" style="color:#3776ab">Basico</div>
             </div>
-            <div class="form-field">
-              <label class="form-label" for="cf-email">Correo electrónico</label>
-              <input class="form-input" id="cf-email" type="email" placeholder="tu@empresa.com" autocomplete="email"
-                required />
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="cf-msg">Mensaje</label>
-              <textarea class="form-input form-input--ta" id="cf-msg" placeholder="Cuéntame sobre el proyecto…" rows="4"
-                required></textarea>
-            </div>
-            <button class="btn btn--primary btn--full" type="submit">Enviar mensaje</button>
-          </form>
 
+            <!-- Bash -->
+            <div class="tech-card reveal" style="--card-accent:#00ff9d;transition-delay:0.15s">
+                <div class="tech-icon"><i class="devicon-bash-plain"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">Bash</div>
+                    <div class="tech-tag">Shell · Automatización</div>
+                </div>
+                <div class="tech-level" style="color:#00ff9d">Avanzado</div>
+            </div>
+
+            <!-- Linux -->
+            <div class="tech-card reveal" style="--card-accent:#e95420;transition-delay:0.2s">
+                <div class="tech-icon"><i class="fa-brands fa-linux"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">Linux</div>
+                    <div class="tech-tag">SO principal · Sysadmin</div>
+                </div>
+                <div class="tech-level" style="color:#e95420">Diario</div>
+            </div>
+
+            <!-- Git -->
+            <div class="tech-card reveal" style="--card-accent:#f05032;transition-delay:0.25s">
+                <div class="tech-icon"><i class="fa-brands fa-git-alt"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">Git</div>
+                    <div class="tech-tag">Control de versiones</div>
+                </div>
+                <div class="tech-level" style="color:#f05032">Diario</div>
+            </div>
+
+            <!-- HTML -->
+            <div class="tech-card reveal" style="--card-accent:#e34f26;transition-delay:0.3s">
+                <div class="tech-icon"><i class="fa-brands fa-html5"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">HTML</div>
+                    <div class="tech-tag">Web · Semántica</div>
+                </div>
+                <div class="tech-level" style="color:#e34f26">Avanzado</div>
+            </div>
+
+            <!-- CSS -->
+            <div class="tech-card reveal" style="--card-accent:#1572b6;transition-delay:0.35s">
+                <div class="tech-icon"><i class="fa-brands fa-css3-alt"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">CSS</div>
+                    <div class="tech-tag">Diseño · Layouts</div>
+                </div>
+                <div class="tech-level" style="color:#1572b6">Intermedio</div>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="tech-card reveal" style="--card-accent:#f7df1e;transition-delay:0.4s">
+                <div class="tech-icon"><i class="fa-brands fa-js"></i></div>
+                <div class="tech-info">
+                    <div class="tech-name">JavaScript</div>
+                    <div class="tech-tag">Web · Interactividad</div>
+                </div>
+                <div class="tech-level" style="color:#f7df1e">Intermedio</div>
+            </div>
         </div>
-      </div>
     </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span class="footer__logo">A<span>.</span>V<span>.</span>M<span>.</span></span>
-      <span class="footer__copy">© 2026 Adrián Velasco · Todos los derechos reservados.</span>
-      <a href="#hero" class="footer__top" aria-label="Volver arriba">↑</a>
-    </div>
-  </footer>
+    <!-- ============================================================
+     PROJECTS
+     ============================================================ -->
+    <section id="projects">
+        <div class="projects-inner">
+            <div class="section-label reveal">03 — Proyectos</div>
+            <h2 class="section-heading reveal">Lo que he<br>construido</h2>
 
-  <script src="js/script.js"></script>
+            <div class="projects-grid">
+                <!-- CipherKey -->
+                <div class="project-card reveal"
+                    style="--card-border:rgba(0,212,255,0.5); --card-glow:0 20px 60px rgba(0,212,255,0.15)">
+                    <div class="project-visual">
+                        <div class="project-visual-bg cipher-bg"></div>
+                        <div class="project-visual-icon"><img src="assets/logo.png" alt="CipherKey" width="350"></div>
+                        <div class="project-version">V3</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">CipherKey</div>
+                        <p class="project-desc">
+                            Gestor de contraseñas de escritorio con autenticación de dos factores. Cifrado robusto,
+                            interfaz nativa Java Swing y arquitectura pensada para la seguridad real del usuario.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag"
+                                style="--tag-color:#00d4ff;--tag-bg:rgba(0,212,255,0.08);--tag-border:rgba(0,212,255,0.25)">Java</span>
+                            <span class="tag"
+                                style="--tag-color:#00d4ff;--tag-bg:rgba(0,212,255,0.08);--tag-border:rgba(0,212,255,0.25)">Swing</span>
+                            <span class="tag"
+                                style="--tag-color:#00d4ff;--tag-bg:rgba(0,212,255,0.08);--tag-border:rgba(0,212,255,0.25)">2FA</span>
+                            <span class="tag"
+                                style="--tag-color:#00d4ff;--tag-bg:rgba(0,212,255,0.08);--tag-border:rgba(0,212,255,0.25)">Seguridad</span>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Adri-Coding-Dev/CipherKey" target="_blank" class="project-link">
+                                Ver en GitHub
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                            <span class="project-number">01</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MasterChess -->
+                <div class="project-card reveal" style="transition-delay:0.1s;
+           --card-border:rgba(123,97,255,0.5); --card-glow:0 20px 60px rgba(123,97,255,0.15)">
+                    <div class="project-visual">
+                        <div class="project-visual-bg chess-bg"></div>
+                        <div class="project-visual-icon"><img src="assets/Tablero.png" alt="MasterChess" width="200">
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">MasterChess</div>
+                        <p class="project-desc">
+                            Ajedrez completo en Java con todas las reglas del juego implementadas desde cero. Lógica de
+                            movimientos, detección de jaque, captura en passant y enroque.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag"
+                                style="--tag-color:#7b61ff;--tag-bg:rgba(123,97,255,0.08);--tag-border:rgba(123,97,255,0.25)">Java</span>
+                            <span class="tag"
+                                style="--tag-color:#7b61ff;--tag-bg:rgba(123,97,255,0.08);--tag-border:rgba(123,97,255,0.25)">Swing</span>
+                            <span class="tag"
+                                style="--tag-color:#7b61ff;--tag-bg:rgba(123,97,255,0.08);--tag-border:rgba(123,97,255,0.25)">Game
+                                Logic</span>
+                            <span class="tag"
+                                style="--tag-color:#7b61ff;--tag-bg:rgba(123,97,255,0.08);--tag-border:rgba(123,97,255,0.25)">OOP</span>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Adri-Coding-Dev/Master_Chess" target="_blank"
+                                class="project-link" style="color:var(--accent-2)">
+                                Ver en GitHub
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                            <span class="project-number">02</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NotasAppMobile -->
+                <div class="project-card reveal" style="transition-delay:0.2s;
+           --card-border:rgba(0,255,157,0.5); --card-glow:0 20px 60px rgba(0,255,157,0.1)">
+                    <div class="project-visual">
+                        <div class="project-visual-bg notes-bg"></div>
+                        <div class="project-visual-icon"><img src="assets/OrdenacionNotas.jpeg" alt="NotasAppMobile"
+                                width="250"></div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">NotasApp Mobile</div>
+                        <p class="project-desc">
+                            Aplicación móvil para crear y gestionar notas de forma intuitiva. UI limpia, persistencia de
+                            datos y una experiencia de usuario pulida en el ecosistema Android.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag"
+                                style="--tag-color:#00ff9d;--tag-bg:rgba(0,255,157,0.08);--tag-border:rgba(0,255,157,0.25)">Kotlin</span>
+                            <span class="tag"
+                                style="--tag-color:#00ff9d;--tag-bg:rgba(0,255,157,0.08);--tag-border:rgba(0,255,157,0.25)">Android</span>
+                            <span class="tag"
+                                style="--tag-color:#00ff9d;--tag-bg:rgba(0,255,157,0.08);--tag-border:rgba(0,255,157,0.25)">Mobile</span>
+                            <span class="tag"
+                                style="--tag-color:#00ff9d;--tag-bg:rgba(0,255,157,0.08);--tag-border:rgba(0,255,157,0.25)">UX</span>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Adri-Coding-Dev/NotesAppMobile" target="_blank"
+                                class="project-link" style="color:var(--accent-3)">
+                                Ver en GitHub
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                            <span class="project-number">03</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+     GITHUB
+     ============================================================ -->
+    <section id="github">
+        <div class="github-inner">
+            <div class="section-label reveal">04 — GitHub</div>
+            <h2 class="section-heading reveal">Actividad &amp;<br>contribuciones</h2>
+
+            <div class="github-grid">
+                <div class="reveal">
+                    <div class="github-profile-card" style="flex-direction: column;">
+                        <picture>
+                            <source srcset="https://streak-stats.demolab.com/?user=Adri-Coding-Dev&theme=dark"
+                                media="(prefers-color-scheme: dark)" />
+                            <img src="https://streak-stats.demolab.com/?user=Adri-Coding-Dev&theme=light" />
+                        </picture>
+                    </div>
+                    <a href="https://github.com/Adri-Coding-Dev" target="_blank" class="gh-link"
+                        style="margin-top:16px;display:inline-flex">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                        </svg>
+                        Ver perfil completo →
+                    </a>
+                </div>
+                <div class="activity-card reveal" style="transition-delay:0.1s">
+                    <div class="activity-title">Contribution graph</div>
+                    <div class="contribution-grid" id="contrib-grid"></div>
+                    <div
+                        style="display:flex;align-items:center;gap:6px;margin-top:12px;font-family:var(--font-mono);font-size:10px;color:var(--fg-muted)">
+                        Menos
+                        <span
+                            style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--bg-card);border:1px solid rgba(255,255,255,0.1)"></span>
+                        <span
+                            style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(0,255,157,0.15)"></span>
+                        <span
+                            style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(0,255,157,0.4)"></span>
+                        <span
+                            style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(0,255,157,0.7)"></span>
+                        Más
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+     CONTACT
+     ============================================================ -->
+    <section id="contact">
+        <div class="contact-inner">
+            <div>
+                <div class="section-label reveal">05 — Contacto</div>
+                <h2 class="section-heading reveal">¿Hablamos?</h2>
+
+                <p class="reveal"
+                    style="font-size:15px;color:var(--fg-secondary);line-height:1.8;margin-top:20px;margin-bottom:40px">
+                    ¿Tienes un proyecto, una propuesta de trabajo o simplemente quieres hablar de tecnología? Estoy
+                    disponible. Respondo rápido.
+                </p>
+
+                <div class="social-links reveal">
+                    <a href="https://github.com/Adri-Coding-Dev" target="_blank" class="social-link"
+                        style="--link-color:#7b61ff">
+                        <span class="social-icon"><i class="fa-brands fa-github"></i></span>
+                        <span class="social-label">GitHub</span>
+                        <span class="social-handle">@Adri-Coding-Dev</span>
+                    </a>
+                    <a href="https://www.youtube.com/@Shadow_Error_Hack" target="_blank" class="social-link"
+                        style="--link-color:#ff4757">
+                        <span class="social-icon"><i class="fa-brands fa-youtube"></i></span>
+                        <span class="social-label">YouTube</span>
+                        <span class="social-handle">Próximamente</span>
+                    </a>
+                    <a href="https://discord.gg/RRSpAz6sM9" target="_blank" class="social-link"
+                        style="--link-color:#5865f2">
+                        <span class="social-icon"><i class="fa-brands fa-discord"></i></span>
+                        <span class="social-label">Discord</span>
+                        <span class="social-handle">adrian.dev</span>
+                    </a>
+                    <a class="social-link" style="--link-color:#25d366">
+                        <span class="social-icon"><i class="fa-brands fa-whatsapp"></i></span>
+                        <span class="social-label">WhatsApp</span>
+                        <span class="social-handle">Contactar directo (+34 644 250 482)</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form-wrap reveal" style="transition-delay:0.15s">
+                <div class="form-title">Envíame un mensaje</div>
+
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label class="form-label" for="form-name">Nombre</label>
+                        <input id="form-name" name="user_name" class="form-input" type="text" placeholder="Tu nombre"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="form-email">Email</label>
+                        <input id="form-email" name="user_email" class="form-input" type="email"
+                            placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="form-msg">Mensaje</label>
+                        <textarea id="form-msg" name="message" class="form-textarea"
+                            placeholder="Cuéntame tu proyecto o propuesta..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Enviar mensaje →</button>
+                    <div class="form-feedback" id="form-feedback"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer>
+        <div class="footer-left">
+            Diseñado y construido por <span>Adrian Velasco Mañas</span> · © 2026
+        </div>
+        <div class="footer-right">
+            Portfolio_Personal · Córdoba, España
+        </div>
+    </footer>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({ publicKey: "V2OxwdAfNzPENpsFb" });
+        })();
+    </script>
+    <script src="script.js"></script>
+
 </body>
 
 </html>
