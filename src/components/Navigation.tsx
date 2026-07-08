@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const links = [
   { href: "#projects", label: "Projects" },
@@ -28,9 +29,11 @@ export default function Navigation() {
           className="fixed top-5 left-1/2 z-50 -translate-x-1/2"
         >
           <div className="flex items-center gap-5 rounded-lg border border-border bg-bg-deep/80 px-4 py-2 backdrop-blur-lg">
-            <img
+            <Image
               src="/images/Low_Noise_Logo.png"
               alt="Low Noise"
+              width={28}
+              height={28}
               className="h-7 w-7 rounded-full object-cover"
             />
             <span className="h-3 w-px bg-border" />

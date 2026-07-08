@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -18,9 +19,11 @@ export default function Hero() {
           className="mb-10 flex justify-center"
         >
           <div className="rounded-full border-2 border-accent/30 p-1.5">
-            <img
+            <Image
               src="/images/Low_Noise_Logo.png"
               alt="Low Noise"
+              width={160}
+              height={160}
               className="h-28 w-28 rounded-full object-cover opacity-90 md:h-36 md:w-36 lg:h-40 lg:w-40"
             />
           </div>
