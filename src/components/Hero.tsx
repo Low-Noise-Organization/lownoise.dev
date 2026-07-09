@@ -171,7 +171,7 @@ function PvcCard() {
           <div className="flex flex-col items-center">
             <div className="flex h-[88px] w-[88px] items-center justify-center overflow-hidden rounded-full border border-white/[0.06] bg-black/60 p-[5px] shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
               <img
-                src="public/images/Low_Noise_Corporation_Logo.png"
+                src="../../public/images/Low_Noise_Corporation_Logo.png"
                 alt="Low Noise"
                 className="h-full w-full rounded-full object-cover"
               />
