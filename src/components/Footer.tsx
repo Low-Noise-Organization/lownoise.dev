@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
         <div className="flex items-center gap-4 font-mono text-[10px] tracking-wider text-text-quaternary/60 uppercase">
           <a
-            href="https://github.com/Low-Noise-Studio"
+            href="https://github.com/Low-Noise-Organization"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors duration-200 hover:text-text-tertiary"
@@ -19,7 +19,7 @@ export default function Footer() {
           </a>
           <span className="h-3 w-px bg-border" />
           <a
-            href="https://youtube.com/@LowNoiseStudio"
+            href="https://www.youtube.com/@Low_Noise-n4e"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors duration-200 hover:text-text-tertiary"

@@ -7,8 +7,8 @@ import { Reveal } from "./Reveal";
 const EMAIL = "adricoding647@gmail.com";
 
 const links = [
-  { href: "https://github.com/Low-Noise-Studio", label: "GitHub" },
-  { href: "https://linkedin.com/in/your-profile", label: "LinkedIn" },
+  { href: "https://github.com/Low-Noise-Organization", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/adrian-velasco-manas/", label: "LinkedIn" },
   { label: "Email", isEmail: true },
 ];
 

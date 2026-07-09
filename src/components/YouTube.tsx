@@ -29,7 +29,7 @@ export default function YouTubeSection() {
 
         <Reveal className="lg:col-span-4 lg:col-start-9" delay={0.15}>
           <a
-            href="https://youtube.com/@LowNoiseStudio"
+            href="https://www.youtube.com/@Low_Noise-n4e"
             target="_blank"
             rel="noopener noreferrer"
             className="panel-accent group flex items-start gap-4 rounded-lg p-5 md:p-6"
