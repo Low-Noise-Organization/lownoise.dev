@@ -24,6 +24,13 @@ export default function Projects() {
     [activeCategory],
   );
 
+  const teaserProjects = useMemo(() => {
+    const cats = [...new Set(projects.map((p) => p.category))];
+    return cats.flatMap((cat) =>
+      projects.filter((p) => p.category === cat).slice(0, 2),
+    );
+  }, []);
+
   const handleOpen = useCallback(() => setShowBrowser(true), []);
   const handleClose = useCallback(() => {
     setShowBrowser(false);
@@ -63,7 +70,7 @@ export default function Projects() {
           </Reveal>
 
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
-            {projects.map((project, index) => (
+            {teaserProjects.map((project, index) => (
               <ProjectCard
                 key={project.name}
                 project={project}
