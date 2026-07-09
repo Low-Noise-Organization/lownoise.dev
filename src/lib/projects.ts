@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     name: "Notes App",
     description:
-      "Mobile application to take notes with moderns tecnologies. Allow create, read, edir, search y delete notes fast in a dark theme",
+      "Mobile application to take notes with modern technologies. Create, read, edit, search, and delete notes quickly in a dark theme",
     tags: ["Kotlin", "Android", "E2EE"],
     status: "Planning",
     github: "https://github.com/Low-Noise-Organization/NotesAppMobile",
@@ -55,7 +55,7 @@ export const projects: Project[] = [
   {
     name: "BashHunterPrompt",
     description:
-      "A professional framework to creating dinamics prompts in Bash (PS1)",
+      "A professional framework for creating dynamic prompts in Bash (PS1)",
     tags: ["Bash", "Shell"],
     status: "Research",
     github: "https://github.com/Low-Noise-Organization/Low_Noise_BashPrompt",
@@ -64,7 +64,7 @@ export const projects: Project[] = [
   {
     name: "Knight",
     description:
-      "A chess game made in Java with graphic interface in Swing. Allow play with other people in the same network or play with an AI",
+      "A chess game built in Java with a Swing interface. Play against other people on the same network or challenge an AI opponent.",
     tags: ["Java", "Swing"],
     status: "Planning",
     github: "https://github.com/Low-Noise-Organization/Master_Chess/",
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     tags: ["Rust", "CLI", "Static Site"],
     status: "Planning",
     github: "https://github.com/Low-Noise-Organization/CheckMateTUI",
-    category: "Games",
+    category: "Developer Tools",
   },
   {
     name: "Community RPG",
@@ -100,7 +100,7 @@ export const projects: Project[] = [
   {
     name: "Exercism",
     description:
-      "Exercism solutions in differents lenguages, with comments and explications",
+      "Exercism solutions in different languages, with comments and explanations",
     tags: ["Java", "Education", "C", "JavaScript"],
     status: "Published",
     github: "https://github.com/Low-Noise-Organization/Exercism_Stack_Lenguages",
@@ -109,7 +109,7 @@ export const projects: Project[] = [
   {
     name: "LabNet",
     description:
-      "Web platform to learn cibersecurity with vulnerables machines",
+      "Web platform to learn cybersecurity with vulnerable machines",
     tags: ["CSS", "Education", "HTML", "JavaScript"],
     status: "Published",
     github: "https://github.com/Low-Noise-Organization/HackerNet",
@@ -118,7 +118,7 @@ export const projects: Project[] = [
   {
     name: "DiscordBot",
     description:
-      "Java Discor Bot",
+      "A Discord bot built in Java for server management and automation.",
     tags: ["Java"],
     status: "Published",
     github: "https://github.com/Low-Noise-Organization/DiscordBot-JAVA",
@@ -127,7 +127,7 @@ export const projects: Project[] = [
   {
     name: "Livre",
     description:
-      "Free platform to add books or read files like pdf or epub",
+      "Platform for organizing and reading books and documents (PDF, EPUB) in the browser",
     tags: ["HTML", "CSS", "JavaScript"],
     status: "Published",
     github: "https://github.com/Low-Noise-Organization/Biblioteca_Libros",

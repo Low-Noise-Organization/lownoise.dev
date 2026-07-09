@@ -4,12 +4,20 @@ import { useState, useCallback } from "react";
 import { SectionHeader } from "./SectionHeader";
 import { Reveal } from "./Reveal";
 
-const EMAIL = "adricoding647@gmail.com";
+const EMAIL = ["adricoding647", "@", "gmail", ".com"].join("");
 
 const links = [
-  { href: "https://github.com/Low-Noise-Organization", label: "GitHub" },
-  { href: "https://www.linkedin.com/in/adrian-velasco-manas/", label: "LinkedIn" },
-  { label: "Email", isEmail: true },
+  {
+    href: "https://github.com/Low-Noise-Organization",
+    label: "GitHub",
+    description: "Explore repositories, open issues, submit PRs",
+  },
+  {
+    href: "https://www.linkedin.com/in/adrian-velasco-manas/",
+    label: "LinkedIn",
+    description: "Professional profile and connections",
+  },
+  { label: "Email", isEmail: true, description: "Direct messages" },
 ];
 
 export default function Contact() {
@@ -33,24 +41,42 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" className="relative py-32 md:py-40">
+    <section id="contact" aria-label="Contact" className="relative py-24 md:py-32">
       <Reveal>
-        <SectionHeader number="006" title="Contact" subtitle="Connect." />
+        <SectionHeader title="Contact" subtitle="Get in touch." />
       </Reveal>
 
       <Reveal delay={0.1}>
-        <div className="mt-20 flex flex-wrap gap-3">
+        <p className="mt-8 max-w-xl text-base leading-relaxed text-text-secondary">
+          Found a bug? Want to contribute? Have an idea for a project?
+          Each channel has a purpose — use the one that fits.
+        </p>
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-text-quaternary">
+          Also open to: bad puns about segfaults, architecture debates,
+          and recommendations for good terminal fonts.
+        </p>
+      </Reveal>
+
+      <Reveal delay={0.15}>
+        <div className="mt-10 space-y-3" role="group" aria-label="Contact channels">
           {links.map((link) =>
             link.isEmail ? (
               <button
                 key="email"
                 onClick={handleCopy}
-                className="panel-accent group relative rounded-lg px-5 py-3 text-left"
+                className="panel-accent group flex w-full max-w-md items-center justify-between rounded-lg px-5 py-4 text-left"
+                aria-live="polite"
+                aria-label={copied ? "Email address copied to clipboard" : "Copy email address"}
               >
-                <span className="font-mono text-xs tracking-wider text-text-secondary transition-colors duration-200 group-hover:text-accent">
-                  {copied ? "Copied!" : "Email"}
-                </span>
-                <span className="ml-2 font-mono text-[10px] text-text-quaternary transition-colors duration-200">
+                <div>
+                  <span className="font-mono text-xs tracking-wider text-text-secondary transition-colors duration-200 group-hover:text-accent">
+                    {copied ? "Copied!" : "Email"}
+                  </span>
+                  <p className="mt-0.5 text-xs text-text-quaternary">
+                    {link.description}
+                  </p>
+                </div>
+                <span className="ml-4 font-mono text-xs text-text-quaternary transition-colors duration-200">
                   {copied ? "✓" : "→"}
                 </span>
               </button>
@@ -60,12 +86,17 @@ export default function Contact() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="panel-accent group rounded-lg px-5 py-3"
+                className="panel-accent group flex w-full max-w-md items-center justify-between rounded-lg px-5 py-4"
               >
-                <span className="font-mono text-xs tracking-wider text-text-secondary transition-colors duration-200 group-hover:text-accent">
-                  {link.label}
-                </span>
-                <span className="ml-2 font-mono text-[10px] text-text-quaternary transition-colors duration-200 group-hover:text-accent/60">
+                <div>
+                  <span className="font-mono text-xs tracking-wider text-text-secondary transition-colors duration-200 group-hover:text-accent">
+                    {link.label}
+                  </span>
+                  <p className="mt-0.5 text-xs text-text-quaternary">
+                    {link.description}
+                  </p>
+                </div>
+                <span className="ml-4 font-mono text-xs text-text-quaternary transition-colors duration-200 group-hover:text-accent/60">
                   →
                 </span>
               </a>

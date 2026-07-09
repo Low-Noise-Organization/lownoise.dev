@@ -6,10 +6,9 @@ import { Reveal } from "./Reveal";
 
 export default function Technologies() {
   return (
-    <section id="technologies" className="relative py-32 md:py-40">
+    <section id="technologies" aria-label="Technologies" className="relative py-24 md:py-32">
       <Reveal>
         <SectionHeader
-          number="004"
           title="Technologies"
           subtitle="Languages, platforms, and disciplines."
         />
@@ -19,10 +18,7 @@ export default function Technologies() {
         {techGroups.map((group, i) => (
           <Reveal key={group.title} delay={i * 0.08}>
             <div className="panel rounded-lg p-6 md:p-8">
-              <span className="font-mono text-[10px] tracking-[0.2em] text-text-quaternary/50">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-mono mt-3 text-xs tracking-[0.15em] text-text-tertiary uppercase">
+              <h3 className="font-mono text-xs tracking-[0.15em] text-text-tertiary uppercase">
                 {group.title}
               </h3>
               <div className="mt-5 space-y-2.5">

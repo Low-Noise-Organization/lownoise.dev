@@ -8,15 +8,14 @@
   --color-bg-elevated: #1B1E30;
   --color-text-primary: #F0F2F6;
   --color-text-secondary: #A8B0C0;
-  --color-text-tertiary: #687088;
-  --color-text-quaternary: #48506A;
+  --color-text-tertiary: #7B8BA0;
+  --color-text-quaternary: #687088;
   --color-accent: #4A8CFF;
   --color-accent-hover: #6BA0FF;
   --color-accent-subtle: rgba(74, 140, 255, 0.08);
   --color-accent-glow: rgba(74, 140, 255, 0.05);
   --color-accent-border: rgba(74, 140, 255, 0.15);
-  --color-gold: #D4A853;
-  --color-glow-gold: rgba(212, 168, 83, 0.06);
+
   --color-border: #1E2238;
   --color-border-light: #282D48;
   --font-sans: var(--font-geist-sans);
@@ -29,20 +28,33 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   body {
     background-color: var(--color-bg-deep);
     color: var(--color-text-primary);
     font-family: var(--font-sans);
-    cursor: none;
-  }
-
-  a, button, input, textarea, select, [role="button"] {
-    cursor: none;
   }
 
   ::selection {
     background-color: var(--color-accent);
     color: var(--color-bg-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 
   ::-webkit-scrollbar { width: 4px; }
@@ -51,7 +63,21 @@
   ::-webkit-scrollbar-thumb:hover { background: var(--color-text-quaternary); }
 }
 
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer utilities {
+  .animate-hero-fade {
+    animation: hero-fade-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
   .bg-depth {
     background: radial-gradient(
       ellipse 85% 55% at 50% 0%,
@@ -137,5 +163,33 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .animate-badge-in {
+    animation: badge-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .animate-wave-glow {
+    animation: wave-glow 3s ease-in-out infinite;
+  }
+}
+
+@keyframes badge-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes wave-glow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
   }
 }
