@@ -14,7 +14,7 @@ export const projects: Project[] = [
       "A cross-platform file-sharing tool that enables seamless transfer between Android devices and desktop systems over local networks.",
     tags: ["Kotlin", "Rust", "Jetpack Compose"],
     status: "Active Development",
-    github: "https://github.com/Low-Noise-Studio",
+    github: "https://github.com/Low-Noise-Organization/AndroidDrop",
     category: "Applications",
   },
   {
@@ -23,26 +23,8 @@ export const projects: Project[] = [
       "Modern encryption toolkit featuring intuitive CLI and TUI interfaces for secure file encryption, decryption, and key management.",
     tags: ["Rust", "CLI", "Security"],
     status: "Active Development",
-    github: "https://github.com/Low-Noise-Studio",
-    category: "Developer Tools",
-  },
-  {
-    name: "Voxen",
-    description:
-      "A lightweight, performant game engine designed for 2D and voxel-based games with a focus on clean architecture and developer experience.",
-    tags: ["Rust", "Game Engine", "OpenGL"],
-    status: "Research",
-    github: "https://github.com/Low-Noise-Studio",
-    category: "Games",
-  },
-  {
-    name: "Knight",
-    description:
-      "A minimal, fast static site generator built from scratch. Designed for developers who appreciate simplicity and Markdown-first workflows.",
-    tags: ["Rust", "CLI", "Static Site"],
-    status: "Planning",
-    github: "https://github.com/Low-Noise-Studio",
-    category: "Developer Tools",
+    github: "https://github.com/Low-Noise-Organization/CipherKey",
+    category: "Applications",
   },
   {
     name: "Pretty Chat",
@@ -50,23 +32,60 @@ export const projects: Project[] = [
       "A beautiful, real-time messaging application with end-to-end encryption and a focus on privacy-first communication.",
     tags: ["Kotlin", "Android", "E2EE"],
     status: "Planning",
-    github: "https://github.com/Low-Noise-Studio",
+    github: "https://github.com/Low-Noise-Organization/Pretty-Chat",
     category: "Applications",
   },
   {
-    name: "Folio",
+    name: "Notes App",
     description:
-      "A portfolio CMS designed for developers who want to showcase their work without sacrificing control or performance.",
-    tags: ["Kotlin", "Web", "CMS"],
+      "Mobile application to take notes with moderns tecnologies. Allow create, read, edir, search y delete notes fast in a dark theme",
+    tags: ["Kotlin", "Android", "E2EE"],
     status: "Planning",
+    github: "https://github.com/Low-Noise-Organization/NotesAppMobile",
+    category: "Applications",
+  },
+  {
+    name: "Voxen",
+    description:
+      "A lightweight, performant game engine designed for 2D and voxel-based games with a focus on clean architecture and developer experience.",
+    tags: ["Rust", "Game Engine", "OpenGL"],
+    status: "Research",
     category: "Developer Tools",
+  },
+  {
+    name: "BashHunterPrompt",
+    description:
+      "A professional framework to creating dinamics prompts in Bash (PS1)",
+    tags: ["Bash", "Shell"],
+    status: "Research",
+    github: "https://github.com/Low-Noise-Organization/Low_Noise_BashPrompt",
+    category: "Developer Tools",
+  },
+  {
+    name: "Knight",
+    description:
+      "A chess game made in Java with graphic interface in Swing. Allow play with other people in the same network or play with an AI",
+    tags: ["Java", "Swing"],
+    status: "Planning",
+    github: "https://github.com/Low-Noise-Organization/Master_Chess/",
+    category: "Games",
+  },
+  {
+    name: "CheckMateTUI",
+    description:
+      "A minimal, fast static site generator built from scratch. Designed for developers who appreciate simplicity and Markdown-first workflows.",
+    tags: ["Rust", "CLI", "Static Site"],
+    status: "Planning",
+    github: "https://github.com/Low-Noise-Organization/CheckMateTUI",
+    category: "Games",
   },
   {
     name: "Community RPG",
     description:
       "An open-source role-playing game framework that empowers communities to create, share, and play custom RPG campaigns collaboratively.",
-    tags: ["Rust", "Game Engine", "Open Source"],
+    tags: ["Java", "Game Engine", "Open Source"],
     status: "Research",
+    github: "https://github.com/Low-Noise-Organization/Community-JavaRPG",
     category: "Games",
   },
   {
@@ -75,6 +94,43 @@ export const projects: Project[] = [
       "An educational series teaching Java programming from absolute zero. Focused on clarity, practice, and real understanding.",
     tags: ["Java", "Education", "Content"],
     status: "Published",
+    github: "https://github.com/Low-Noise-Organization/De_0_a_Java",
     category: "Education",
+  },
+  {
+    name: "Exercism",
+    description:
+      "Exercism solutions in differents lenguages, with comments and explications",
+    tags: ["Java", "Education", "C", "JavaScript"],
+    status: "Published",
+    github: "https://github.com/Low-Noise-Organization/Exercism_Stack_Lenguages",
+    category: "Education",
+  },
+  {
+    name: "LabNet",
+    description:
+      "Web platform to learn cibersecurity with vulnerables machines",
+    tags: ["CSS", "Education", "HTML", "JavaScript"],
+    status: "Published",
+    github: "https://github.com/Low-Noise-Organization/HackerNet",
+    category: "Research",
+  },
+  {
+    name: "DiscordBot",
+    description:
+      "Java Discor Bot",
+    tags: ["Java"],
+    status: "Published",
+    github: "https://github.com/Low-Noise-Organization/DiscordBot-JAVA",
+    category: "Research",
+  },
+  {
+    name: "Livre",
+    description:
+      "Free platform to add books or read files like pdf or epub",
+    tags: ["HTML", "CSS", "JavaScript"],
+    status: "Published",
+    github: "https://github.com/Low-Noise-Organization/Biblioteca_Libros",
+    category: "Research",
   },
 ];

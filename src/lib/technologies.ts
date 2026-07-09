@@ -6,7 +6,7 @@ export interface TechGroup {
 export const techGroups: TechGroup[] = [
   {
     title: "Languages",
-    items: ["Java", "Rust", "Kotlin", "C"],
+    items: ["Java", "Rust", "Kotlin", "Bash"],
   },
   {
     title: "Platforms",
