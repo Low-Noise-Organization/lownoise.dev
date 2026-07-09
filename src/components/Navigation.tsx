@@ -30,7 +30,7 @@ export default function Navigation() {
         >
           <div className="flex items-center gap-5 rounded-lg border border-border bg-bg-deep/80 px-4 py-2 backdrop-blur-lg">
             <Image
-              src="../public/images/Low_Noise_Logo.png"
+              src="/images/Low_Noise_Logo.png"
               alt="Low Noise"
               width={28}
               height={28}
