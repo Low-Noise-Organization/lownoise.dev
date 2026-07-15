@@ -535,25 +535,12 @@
             <div class="contact-form-wrap reveal" style="transition-delay:0.15s">
                 <div class="form-title">Envíame un mensaje</div>
 
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label class="form-label" for="form-name">Nombre</label>
-                        <input id="form-name" name="user_name" class="form-input" type="text" placeholder="Tu nombre"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="form-email">Email</label>
-                        <input id="form-email" name="user_email" class="form-input" type="email"
-                            placeholder="tu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="form-msg">Mensaje</label>
-                        <textarea id="form-msg" name="message" class="form-textarea"
-                            placeholder="Cuéntame tu proyecto o propuesta..." required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Enviar mensaje →</button>
-                    <div class="form-feedback" id="form-feedback"></div>
-                </form>
+                <!-- LowNoise Contact Suite -->
+                <div data-lcs
+                     data-lcs-channels='[{"type":"whatsapp","number":"34644250482"},{"type":"emailjs","publicKey":"V2OxwdAfNzPENpsFb","serviceId":"YOUR_SERVICE_ID","templateId":"YOUR_TEMPLATE_ID"}]'
+                     data-lcs-fields='[{"name":"name","type":"text","label":"Nombre","required":true},{"name":"email","type":"email","label":"Email","required":true},{"name":"message","type":"textarea","label":"Mensaje","required":true}]'
+                     data-lcs-ui='{"theme":"minimal"}'>
+                </div>
             </div>
         </div>
     </section>
@@ -569,14 +556,8 @@
             Portfolio_Personal · Córdoba, España
         </div>
     </footer>
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            emailjs.init({ publicKey: "V2OxwdAfNzPENpsFb" });
-        })();
-    </script>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="public/lcs/low-noise-contact-suite.css">
+    <script src="public/lcs/vanilla-auto-init.js" defer></script>
 
 </body>
 
