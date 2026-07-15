@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
-    "low-noise-contact-suite": "file:../../../TypeScript/LowNoise_Contact_Suite/low-noise-contact-suite-1.0.0.tgz",
+    "low-noise-contact-suite": "file:low-noise-contact-suite-1.0.0.tgz",
     "lucide-react": "^1.23.0",
     "next": "16.2.10",
     "react": "19.2.4",
