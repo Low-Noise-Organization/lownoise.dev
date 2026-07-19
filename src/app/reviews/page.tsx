@@ -69,7 +69,7 @@ export default function ReviewsPage() {
     <main className="relative min-h-screen pb-24">
       <div className="mx-auto max-w-7xl px-6 pt-28 sm:px-10 md:px-16">
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-10 text-center">
           <p
             className="text-[11px] tracking-widest"
             style={{ color: "var(--color-mauve)" }}
@@ -83,7 +83,7 @@ export default function ReviewsPage() {
             LOW NOISE REVIEWS
           </h1>
           <p
-            className="mt-2 max-w-2xl text-[12px] leading-relaxed"
+            className="mt-2 text-[12px] leading-relaxed"
             style={{ color: "var(--color-overlay1)" }}
           >
             Tell us about your experience with Low Noise products and services.
@@ -92,7 +92,7 @@ export default function ReviewsPage() {
         </div>
 
         {/* Form */}
-        <div className="max-w-2xl">
+        <div className="mx-auto max-w-2xl">
           <div
             className="pixel-card p-6"
             style={{ border: "2px solid var(--color-border)" }}
@@ -131,12 +131,11 @@ export default function ReviewsPage() {
                 >
                   TIPO DE PRODUCTO *
                 </label>
-                <input
-                  type="text"
+                <select
                   required
                   value={productType}
                   onChange={(e) => setProductType(e.target.value)}
-                  className="w-full px-3 py-2.5 text-[13px]"
+                  className="w-full px-3 py-2.5 text-[13px] appearance-none"
                   style={{
                     color: "var(--color-text)",
                     background: "var(--color-crust)",
@@ -145,7 +144,12 @@ export default function ReviewsPage() {
                       "inset 2px 2px 0 0 var(--color-surface0), inset -2px -2px 0 0 var(--color-overlay1)",
                     outline: "none",
                   }}
-                />
+                >
+                  <option value="" disabled>-- Selecciona una opción --</option>
+                  <option value="Pagina web">Pagina web</option>
+                  <option value="Producto digital">Producto digital</option>
+                  <option value="Programa a medida">Programa a medida</option>
+                </select>
               </div>
 
               {/* Star Rating */}
@@ -157,7 +161,7 @@ export default function ReviewsPage() {
                   VALORACIÓN *
                 </label>
                 <div
-                  className="inline-flex gap-1 px-3 py-2"
+                  className="flex justify-center gap-3 px-6 py-5"
                   style={{
                     border: "2px solid var(--color-border)",
                     boxShadow:
@@ -173,13 +177,14 @@ export default function ReviewsPage() {
                         onClick={() => setRating(star)}
                         onMouseEnter={() => setHoveredRating(star)}
                         onMouseLeave={() => setHoveredRating(0)}
-                        className="relative text-2xl leading-none transition-colors duration-100"
+                        className="relative leading-none transition-colors duration-100"
                         style={{
+                          fontSize: "3.5rem",
                           color: active
                             ? "var(--color-yellow)"
                             : "var(--color-surface1)",
                           textShadow: active
-                            ? "0 0 6px var(--color-yellow), 0 0 12px var(--color-yellow)"
+                            ? "0 0 10px var(--color-yellow), 0 0 20px var(--color-yellow)"
                             : "none",
                         }}
                         whileHover={{ scale: 1.3 }}
@@ -251,10 +256,10 @@ export default function ReviewsPage() {
                 className="pixel-btn-primary w-full py-3 text-[13px] tracking-wider uppercase"
               >
                 {sending
-                  ? "SENDING..."
+                  ? "ENVIANDO..."
                   : sent
-                    ? "\u2713 SENT VIA DISCORD"
-                    : "ENVIAR VIA DISCORD"}
+                    ? "\u2713 ENVIADO"
+                    : "ENVIAR"}
               </button>
 
               {sent && (
