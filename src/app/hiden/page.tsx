@@ -10,6 +10,12 @@ const hiddenPages = [
     icon: "⇅",
   },
   {
+    title: "LOW NOISE REVIEWS",
+    url: "/reviews",
+    description: "Submit a review for Low Noise products and services via Discord.",
+    icon: "★",
+  },
+  {
     title: "Test 404 error",
     url: "/error",
     description: "No hay ninguna web, pero provoca un error",
