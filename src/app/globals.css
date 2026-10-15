@@ -128,6 +128,13 @@ section { padding: 56px 0; border-bottom: 1px solid var(--line); }
 .field textarea { resize: vertical; }
 .field textarea::placeholder { color: var(--ink-faint); }
 .field .is-error { border-color: var(--err); box-shadow: inset 3px 0 0 var(--err); }
+.field input { font: 400 14px/22px var(--font); height: 40px; padding: 0 12px; background: var(--paper); color: var(--ink); border: 1px solid var(--line-3); border-radius: var(--r); }
+.field .hint { font-size: 12px; line-height: 18px; color: var(--ink-muted); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.status-line { min-height: 22px; }
+.status-line.sent { color: var(--ok); }
+.status-line.failed { color: var(--err); }
+.btn:disabled { color: var(--ink-faint); cursor: not-allowed; }
 .field .msg { font-size: 12px; line-height: 18px; color: var(--err); }
 
 /* Contact + footer */
