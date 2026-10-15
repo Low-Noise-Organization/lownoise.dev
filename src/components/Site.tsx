@@ -27,6 +27,9 @@ const getLang = (): Lang => {
   if (l === "es" || l === "en") return l;
   return navigator.language.startsWith("es") ? "es" : "en";
 };
+const getSent = () => new URLSearchParams(location.search).get("sent") === "1";
+const getOrigin = () => location.origin;
+
 const getTheme = (): Theme => (document.documentElement.dataset.theme === "washi" ? "washi" : "grafito");
 
 function Illustration({ caption }: { caption: string }) {
@@ -61,9 +64,10 @@ export default function Site() {
   const [about, setAbout] = useState("");
   const [showErr, setShowErr] = useState(false);
   const [replyTo, setReplyTo] = useState("");
+  const sentOk = useSyncExternalStore(subscribe, getSent, () => false);
+  const origin = useSyncExternalStore(subscribe, getOrigin, () => "");
   const [waMsg, setWaMsg] = useState("");
   const [loadedAt] = useState(() => Date.now());
-  const [state, setState] = useState<"idle" | "sending" | "sent" | "failed">("idle");
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -89,30 +93,18 @@ export default function Site() {
     );
   }, [cat, q]);
 
-  const send = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const send = (e: React.FormEvent<HTMLFormElement>) => {
     const c = t.contact;
     const emailOk = !FORMSPREE_ID || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo.trim());
-    if (!about.trim() || !emailOk) { setShowErr(true); return; }
-    setShowErr(false);
     const hp = (e.currentTarget.elements.namedItem("_gotcha") as HTMLInputElement | null)?.value;
-    if (hp) return; // honeypot: bots fill hidden fields
-    if (FORMSPREE_ID) {
-      setState("sending");
-      try {
-        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ email: replyTo.trim(), tipo: c.types[typeIdx], plazo: c.whens[whenIdx], mensaje: about.trim() }),
-        });
-        if (!res.ok) throw new Error(String(res.status));
-        setState("sent");
-        setAbout("");
-      } catch {
-        setState("failed");
-      }
+    if (!about.trim() || !emailOk || hp) {
+      e.preventDefault();
+      if (!hp) setShowErr(true);
       return;
     }
+    setShowErr(false);
+    if (FORMSPREE_ID) return; // native POST to Formspree: it shows its own reCAPTCHA, then redirects back here
+    e.preventDefault();
     const body = `${c.lines.type}: ${c.types[typeIdx]}\n${c.lines.when}: ${c.whens[whenIdx]}\n\n${c.lines.about}:\n${about.trim()}\n`;
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(`Low Noise — ${c.subject}`)}&body=${encodeURIComponent(body)}`;
   };
@@ -263,7 +255,16 @@ export default function Site() {
           <div className="wrap">
             <div className="sec-head"><span className="n">04 //</span><h2>{t.contact.title}</h2></div>
             <p className="dim" style={{ maxWidth: "60ch", marginBottom: 24 }}>{t.contact.lead}</p>
-            <form className="brief" onSubmit={send} noValidate>
+            <form className="brief" onSubmit={send} noValidate
+              {...(FORMSPREE_ID ? { action: `https://formspree.io/f/${FORMSPREE_ID}`, method: "POST" } : {})}>
+              {FORMSPREE_ID && (
+                <>
+                  <input type="hidden" name="tipo" value={t.contact.types[typeIdx]} />
+                  <input type="hidden" name="plazo" value={t.contact.whens[whenIdx]} />
+                  <input type="hidden" name="_subject" value={`Low Noise — ${t.contact.subject}`} />
+                  <input type="hidden" name="_next" value={`${origin}${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/?sent=1`} />
+                </>
+              )}
               <div className="field">
                 <label htmlFor="f-type">{t.contact.type}</label>
                 <select id="f-type" value={typeIdx} onChange={(e) => setTypeIdx(Number(e.target.value))}>
@@ -279,9 +280,9 @@ export default function Site() {
               {FORMSPREE_ID && (
                 <div className="field wide">
                   <label htmlFor="f-email">{t.contact.email}</label>
-                  <input id="f-email" type="email" autoComplete="email" value={replyTo}
+                  <input id="f-email" name="email" type="email" autoComplete="email" value={replyTo}
                     aria-invalid={showErr && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo.trim())}
-                    onChange={(e) => { setReplyTo(e.target.value); setState("idle"); }} />
+                    onChange={(e) => setReplyTo(e.target.value)} />
                   <p className="hint">{t.contact.emailHint}</p>
                   {showErr && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo.trim()) && <p className="msg" role="alert">✕ {t.contact.emailInvalid}</p>}
                 </div>
@@ -289,24 +290,19 @@ export default function Site() {
               <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />
               <div className="field wide">
                 <label htmlFor="f-about">{t.contact.about}</label>
-                <textarea id="f-about" rows={5} value={about} placeholder={t.contact.aboutHint}
+                <textarea id="f-about" name="mensaje" rows={5} value={about} placeholder={t.contact.aboutHint}
                   aria-invalid={showErr} aria-describedby={showErr ? "f-err" : undefined}
                   className={showErr ? "is-error" : undefined}
                   onChange={(e) => { setAbout(e.target.value); if (showErr) setShowErr(false); }} />
                 {showErr && !about.trim() && <p className="msg" id="f-err" role="alert">✕ {t.contact.required}</p>}
               </div>
               <div className="wide cta" style={{ marginTop: 0 }}>
-                <button className="btn primary" type="submit" disabled={state === "sending"}>
-                  {state === "sending" ? t.contact.sending : FORMSPREE_ID ? t.contact.send : t.contact.sendMail}
-                </button>
+                <button className="btn primary" type="submit">{FORMSPREE_ID ? t.contact.send : t.contact.sendMail}</button>
                 {WHATSAPP_PHONE && (
                   <button className="btn" type="button" onClick={sendWhatsApp}>{t.contact.whatsapp}</button>
                 )}
               </div>
-              <p className={`wide status-line ${state}`} role="status" aria-live="polite">
-                {state === "sent" && `✓ ${t.contact.sent}`}
-                {state === "failed" && `✕ ${t.contact.failed}`}
-              </p>
+              {sentOk && <p className="wide status-line sent" role="status">✓ {t.contact.sent}</p>}
               {WHATSAPP_PHONE && <p className="wide hint" role="status" aria-live="polite">{waMsg || t.contact.waNote}</p>}
             </form>
             <h3 className="channels-title">{t.contact.channelsTitle}</h3>
