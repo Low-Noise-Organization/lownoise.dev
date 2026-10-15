@@ -286,9 +286,24 @@ export default function Site() {
                 {state === "failed" && `✕ ${t.contact.failed}`}
               </p>
             </form>
-            <p className="muted" style={{ marginTop: 24 }}>
-              {t.contact.or} <a href={`mailto:${email}`}>{email}</a> · <a href={`https://github.com/${ORG}/.github/issues`}>{t.contact.issues}</a>
-            </p>
+            <h3 className="channels-title">{t.contact.channelsTitle}</h3>
+            <ul className="channels">
+              {t.contact.channels.map(([name, body, kind]) => {
+                const href = {
+                  mail: `mailto:${email}`,
+                  issues: `https://github.com/${ORG}/.github/issues`,
+                  security: `https://github.com/${ORG}/.github/blob/main/SECURITY.md`,
+                  youtube: "https://www.youtube.com/@Low_Noise-n4e",
+                }[kind];
+                return (
+                  <li key={kind}>
+                    <a href={href}>{name}{kind === "mail" ? ` · ${email}` : ""} <span aria-hidden="true">↗</span></a>
+                    <p className="dim">{body}</p>
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="promise">{t.contact.safety}</p>
           </div>
         </section>
       </main>
