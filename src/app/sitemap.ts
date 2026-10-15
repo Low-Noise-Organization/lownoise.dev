@@ -1,17 +1,7 @@
-import type { MetadataRoute } from "next"
+import type { MetadataRoute } from "next";
 
-export const dynamic = "force-static"
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://lownoise.dev"
-
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1.0,
-    },
-
-  ]
+  return [{ url: "https://low-noise-organization.github.io/lownoise.dev/", changeFrequency: "monthly", priority: 1 }];
 }
