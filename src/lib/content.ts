@@ -1,6 +1,6 @@
 export type Lang = "en" | "es";
 
-export const CONTACT_USER = "adricoding647";
+export const CONTACT_USER = "personal.lownoise";
 export const CONTACT_HOST = "gmail.com";
 // Public Formspree form id (e.g. "xyzabcde"). It is not a secret: it only accepts submissions.
 // Leave empty to fall back to the mailto-only form.
@@ -81,6 +81,14 @@ export const T = {
       required: "Describe the project first.",
       or: "Or write directly to",
       issues: "Open an issue on GitHub",
+      channelsTitle: "Other channels",
+      channels: [
+        ["Email", "Best for project enquiries. Private.", "mail"],
+        ["GitHub issues", "For questions about our code. Public: never post private data.", "issues"],
+        ["Security reports", "Found a vulnerability? Report it privately, not in a public issue.", "security"],
+        ["YouTube", "Updates and walkthroughs of what we build.", "youtube"],
+      ],
+      safety: "Never send passwords, keys or tokens through any channel. We will never ask for them.",
       email: "Your email", emailHint: "Needed so we can reply.", emailInvalid: "Enter a valid email.",
       sending: "Sending…", sent: "Sent. We will reply to your email.", failed: "Could not send. Use the email link below instead.",
       subject: "Project enquiry",
@@ -162,6 +170,14 @@ export const T = {
       required: "Describe primero el proyecto.",
       or: "O escribe directamente a",
       issues: "Abrir una issue en GitHub",
+      channelsTitle: "Otros canales",
+      channels: [
+        ["Correo", "Lo mejor para consultas de proyecto. Privado.", "mail"],
+        ["Issues de GitHub", "Para dudas sobre nuestro código. Público: nunca publiques datos privados.", "issues"],
+        ["Avisos de seguridad", "¿Has encontrado una vulnerabilidad? Avísanos en privado, no en una issue pública.", "security"],
+        ["YouTube", "Novedades y explicaciones de lo que construimos.", "youtube"],
+      ],
+      safety: "No envíes contraseñas, claves ni tokens por ningún canal. Nunca te las pediremos.",
       email: "Tu correo", emailHint: "Necesario para poder responderte.", emailInvalid: "Introduce un correo válido.",
       sending: "Enviando…", sent: "Enviado. Te responderemos a tu correo.", failed: "No se pudo enviar. Usa el enlace de correo de abajo.",
       subject: "Consulta de proyecto",
