@@ -2,52 +2,9 @@
 
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { ORG, projects, type Category } from "@/lib/projects";
+import { T, contactEmail, type Lang } from "@/lib/content";
 
-type Lang = "en" | "es";
 type Theme = "grafito" | "washi";
-
-const T = {
-  en: {
-    projects: "Projects", about: "Philosophy", contact: "Contact",
-    tagline: "Software crafted with intention.",
-    lead: "We build thoughtful software for developers, creators and curious minds. Less noise. More craftsmanship.",
-    seeProjects: "See projects", github: "GitHub",
-    aboutTitle: "Philosophy",
-    principles: [
-      ["Earn its place", "Every line, feature and dependency has to justify itself. If it adds noise, it goes."],
-      ["Honest status", "Each project says where it really is: design, experimental or stable. No invented numbers."],
-      ["Built to last", "Small, readable, tested. Software made with care outlasts software made in a hurry."],
-    ],
-    projectsTitle: "Projects",
-    all: "All", search: "Search projects", none: "No project matches.",
-    cat: { systems: "Systems", apps: "Apps", tools: "Tools", games: "Games", learning: "Learning" },
-    status: { active: "active", experimental: "experimental", design: "design", stable: "stable" },
-    contactTitle: "Contact",
-    contactText: "Everything happens in the open. Issues and discussions on GitHub are the best way to reach us.",
-    issues: "Open an issue", footer: "Built with care. Powered by curiosity.",
-    illCaption: "01 // WINDOW",
-  },
-  es: {
-    projects: "Proyectos", about: "Filosofía", contact: "Contacto",
-    tagline: "Software hecho con intención.",
-    lead: "Creamos software cuidado para desarrolladores, creadores y mentes curiosas. Menos ruido. Más oficio.",
-    seeProjects: "Ver proyectos", github: "GitHub",
-    aboutTitle: "Filosofía",
-    principles: [
-      ["Ganarse el sitio", "Cada línea, función y dependencia tiene que justificarse. Si añade ruido, fuera."],
-      ["Estado honesto", "Cada proyecto dice dónde está de verdad: diseño, experimental o estable. Sin cifras inventadas."],
-      ["Hecho para durar", "Pequeño, legible, probado. El software hecho con cuidado dura más que el hecho con prisa."],
-    ],
-    projectsTitle: "Proyectos",
-    all: "Todos", search: "Buscar proyectos", none: "Ningún proyecto coincide.",
-    cat: { systems: "Sistemas", apps: "Apps", tools: "Herramientas", games: "Juegos", learning: "Aprendizaje" },
-    status: { active: "activo", experimental: "experimental", design: "diseño", stable: "estable" },
-    contactTitle: "Contacto",
-    contactText: "Todo ocurre en abierto. Las issues y discusiones en GitHub son la mejor vía para escribirnos.",
-    issues: "Abrir una issue", footer: "Hecho con cuidado. Movido por la curiosidad.",
-    illCaption: "01 // VENTANA",
-  },
-} as const;
 
 const CATS: Category[] = ["systems", "apps", "tools", "games", "learning"];
 
@@ -99,12 +56,17 @@ export default function Site() {
   const theme = useSyncExternalStore(subscribe, getTheme, () => "grafito" as Theme);
   const [cat, setCat] = useState<Category | "all">("all");
   const [q, setQ] = useState("");
+  const [typeIdx, setTypeIdx] = useState(0);
+  const [whenIdx, setWhenIdx] = useState(0);
+  const [about, setAbout] = useState("");
+  const [showErr, setShowErr] = useState(false);
 
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
   const t = T[lang];
+  const email = contactEmail();
 
   const pickLang = (l: Lang) => { store("ln-lang", l); notify(); };
   const pickTheme = (th: Theme) => {
@@ -123,16 +85,27 @@ export default function Site() {
     );
   }, [cat, q]);
 
+  const send = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!about.trim()) { setShowErr(true); return; }
+    setShowErr(false);
+    const c = t.contact;
+    const body = `${c.lines.type}: ${c.types[typeIdx]}\n${c.lines.when}: ${c.whens[whenIdx]}\n\n${c.lines.about}:\n${about.trim()}\n`;
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(`Low Noise — ${c.subject}`)}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <>
-      <a className="skip" href="#main">Skip to content</a>
+      <a className="skip" href="#main">{t.skip}</a>
       <header className="top">
         <div className="wrap">
           <a className="brand" href="#top"><span className="disc" aria-hidden="true" />LOW NOISE</a>
           <nav className="menu" aria-label="Main">
-            <a className="hide-sm" href="#projects">{t.projects}</a>
-            <a className="hide-sm" href="#about">{t.about}</a>
-            <a className="hide-sm" href="#contact">{t.contact}</a>
+            <a className="hide-sm" href="#services">{t.nav.services}</a>
+            <a className="hide-sm" href="#process">{t.nav.process}</a>
+            <a className="hide-sm" href="#work">{t.nav.work}</a>
+            <a className="hide-sm" href="#code">{t.nav.code}</a>
+            <a className="hide-sm" href="#contact">{t.nav.contact}</a>
             <div className="toggle" role="group" aria-label="Language">
               {(["en", "es"] as const).map((l) => (
                 <button key={l} aria-pressed={lang === l} onClick={() => pickLang(l)}>{l.toUpperCase()}</button>
@@ -151,43 +124,83 @@ export default function Site() {
           <div className="sun" aria-hidden="true" />
           <div className="wrap">
             <div>
-              <p className="label">Low Noise // Open source</p>
-              <h1 className="display" style={{ marginTop: 8 }}>{t.tagline}</h1>
-              <p className="lead">{t.lead}</p>
+              <p className="label">{t.hero.kicker}</p>
+              <h1 className="display" style={{ marginTop: 8 }}>{t.hero.title}</h1>
+              <p className="lead">{t.hero.lead}</p>
               <div className="cta">
-                <a className="btn primary" href="#projects">{t.seeProjects}</a>
-                <a className="btn" href={`https://github.com/${ORG}`}>{t.github}</a>
+                <a className="btn primary" href="#contact">{t.hero.cta}</a>
+                <a className="btn" href="#work">{t.hero.secondary}</a>
               </div>
             </div>
-            <Illustration caption={t.illCaption} />
+            <Illustration caption={t.ill} />
           </div>
         </div>
 
-        <section id="about">
+        <section id="services">
           <div className="wrap">
-            <div className="sec-head"><span className="n">00 //</span><h2>{t.aboutTitle}</h2></div>
-            <div className="principles">
-              {t.principles.map(([title, body]) => (
-                <div className="card" key={title}><h3>{title}</h3><p className="dim">{body}</p></div>
+            <div className="sec-head"><span className="n">00 //</span><h2>{t.services.title}</h2></div>
+            <div className="principles services">
+              {t.services.items.map((s) => (
+                <div className="card" key={s.name}>
+                  <h3>{s.name}</h3>
+                  <p className="dim">{s.body}</p>
+                  <p className="stack">{s.stack}</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="projects">
+        <section id="process">
           <div className="wrap">
-            <div className="sec-head"><span className="n">01 //</span><h2>{t.projectsTitle}</h2><span className="muted">{shown.length}</span></div>
+            <div className="sec-head"><span className="n">01 //</span><h2>{t.process.title}</h2></div>
+            <ol className="steps">
+              {t.process.steps.map(([title, body], i) => (
+                <li key={title}>
+                  <span className="label">0{i + 1}</span>
+                  <h3>{title}</h3>
+                  <p className="dim">{body}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="promise">{t.process.promise}</p>
+          </div>
+        </section>
+
+        <section id="work">
+          <div className="wrap">
+            <div className="sec-head"><span className="n">02 //</span><h2>{t.work.title}</h2></div>
+            <p className="dim" style={{ marginBottom: 24, maxWidth: "62ch" }}>{t.work.note}</p>
+            <div className="cases">
+              {t.work.cases.map((c) => (
+                <a className="case" key={c.repo} href={`https://github.com/${ORG}/${c.repo}`}>
+                  <p className="label">{c.kind}</p>
+                  <h3>{c.name} <span className="muted" aria-hidden="true">↗</span></h3>
+                  <dl>
+                    <dt>{t.work.labels.problem}</dt><dd>{c.problem}</dd>
+                    <dt>{t.work.labels.decision}</dt><dd>{c.decision}</dd>
+                    <dt>{t.work.labels.status}</dt><dd>{c.status}</dd>
+                  </dl>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="code">
+          <div className="wrap">
+            <div className="sec-head"><span className="n">03 //</span><h2>{t.code.title}</h2><span className="muted">{shown.length}</span></div>
             <div className="tools">
               <div className="chips" role="group" aria-label="Category">
-                <button className="chip" aria-pressed={cat === "all"} onClick={() => setCat("all")}>{t.all}</button>
+                <button className="chip" aria-pressed={cat === "all"} onClick={() => setCat("all")}>{t.code.all}</button>
                 {CATS.map((c) => (
-                  <button key={c} className="chip" aria-pressed={cat === c} onClick={() => setCat(c)}>{t.cat[c]}</button>
+                  <button key={c} className="chip" aria-pressed={cat === c} onClick={() => setCat(c)}>{t.code.cat[c]}</button>
                 ))}
               </div>
-              <input className="search" type="search" placeholder={t.search} aria-label={t.search} value={q} onChange={(e) => setQ(e.target.value)} />
+              <input className="search" type="search" placeholder={t.code.search} aria-label={t.code.search} value={q} onChange={(e) => setQ(e.target.value)} />
             </div>
             {shown.length === 0 ? (
-              <p className="empty">{t.none}</p>
+              <p className="empty">{t.code.none}</p>
             ) : (
               <div className="grid">
                 {shown.map((p) => (
@@ -196,8 +209,8 @@ export default function Site() {
                     <p>{p[lang]}</p>
                     <div className="meta">
                       <span>{p.lang}</span>
-                      <span>{t.cat[p.category]}</span>
-                      <span className={`status ${p.status}`}>{t.status[p.status]}</span>
+                      <span>{t.code.cat[p.category]}</span>
+                      <span className={`status ${p.status}`}>{t.code.status[p.status]}</span>
                     </div>
                   </a>
                 ))}
@@ -208,12 +221,36 @@ export default function Site() {
 
         <section id="contact">
           <div className="wrap">
-            <div className="sec-head"><span className="n">02 //</span><h2>{t.contactTitle}</h2></div>
-            <p className="dim" style={{ maxWidth: "56ch" }}>{t.contactText}</p>
-            <div className="links">
-              <a className="btn primary" href={`https://github.com/${ORG}/.github/issues`}>{t.issues}</a>
-              <a className="btn" href={`https://github.com/${ORG}`}>{t.github}</a>
-            </div>
+            <div className="sec-head"><span className="n">04 //</span><h2>{t.contact.title}</h2></div>
+            <p className="dim" style={{ maxWidth: "60ch", marginBottom: 24 }}>{t.contact.lead}</p>
+            <form className="brief" onSubmit={send} noValidate>
+              <div className="field">
+                <label htmlFor="f-type">{t.contact.type}</label>
+                <select id="f-type" value={typeIdx} onChange={(e) => setTypeIdx(Number(e.target.value))}>
+                  {t.contact.types.map((x, i) => <option key={x} value={i}>{x}</option>)}
+                </select>
+              </div>
+              <div className="field">
+                <label htmlFor="f-when">{t.contact.when}</label>
+                <select id="f-when" value={whenIdx} onChange={(e) => setWhenIdx(Number(e.target.value))}>
+                  {t.contact.whens.map((x, i) => <option key={x} value={i}>{x}</option>)}
+                </select>
+              </div>
+              <div className="field wide">
+                <label htmlFor="f-about">{t.contact.about}</label>
+                <textarea id="f-about" rows={5} value={about} placeholder={t.contact.aboutHint}
+                  aria-invalid={showErr} aria-describedby={showErr ? "f-err" : undefined}
+                  className={showErr ? "is-error" : undefined}
+                  onChange={(e) => { setAbout(e.target.value); if (showErr) setShowErr(false); }} />
+                {showErr && <p className="msg" id="f-err" role="alert">✕ {t.contact.required}</p>}
+              </div>
+              <div className="wide cta" style={{ marginTop: 0 }}>
+                <button className="btn primary" type="submit">{t.contact.send}</button>
+              </div>
+            </form>
+            <p className="muted" style={{ marginTop: 24 }}>
+              {t.contact.or} <a href={`mailto:${email}`}>{email}</a> · <a href={`https://github.com/${ORG}/.github/issues`}>{t.contact.issues}</a>
+            </p>
           </div>
         </section>
       </main>
