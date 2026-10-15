@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { ORG, projects, type Category } from "@/lib/projects";
-import { T, contactEmail, type Lang } from "@/lib/content";
+import { FORMSPREE_ID, T, contactEmail, type Lang } from "@/lib/content";
 
 type Theme = "grafito" | "washi";
 
@@ -60,6 +60,8 @@ export default function Site() {
   const [whenIdx, setWhenIdx] = useState(0);
   const [about, setAbout] = useState("");
   const [showErr, setShowErr] = useState(false);
+  const [replyTo, setReplyTo] = useState("");
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "failed">("idle");
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -85,11 +87,30 @@ export default function Site() {
     );
   }, [cat, q]);
 
-  const send = (e: React.FormEvent) => {
+  const send = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!about.trim()) { setShowErr(true); return; }
-    setShowErr(false);
     const c = t.contact;
+    const emailOk = !FORMSPREE_ID || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo.trim());
+    if (!about.trim() || !emailOk) { setShowErr(true); return; }
+    setShowErr(false);
+    const hp = (e.currentTarget.elements.namedItem("_gotcha") as HTMLInputElement | null)?.value;
+    if (hp) return; // honeypot: bots fill hidden fields
+    if (FORMSPREE_ID) {
+      setState("sending");
+      try {
+        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ email: replyTo.trim(), tipo: c.types[typeIdx], plazo: c.whens[whenIdx], mensaje: about.trim() }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        setState("sent");
+        setAbout("");
+      } catch {
+        setState("failed");
+      }
+      return;
+    }
     const body = `${c.lines.type}: ${c.types[typeIdx]}\n${c.lines.when}: ${c.whens[whenIdx]}\n\n${c.lines.about}:\n${about.trim()}\n`;
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(`Low Noise — ${c.subject}`)}&body=${encodeURIComponent(body)}`;
   };
@@ -236,17 +257,34 @@ export default function Site() {
                   {t.contact.whens.map((x, i) => <option key={x} value={i}>{x}</option>)}
                 </select>
               </div>
+              {FORMSPREE_ID && (
+                <div className="field wide">
+                  <label htmlFor="f-email">{t.contact.email}</label>
+                  <input id="f-email" type="email" autoComplete="email" value={replyTo}
+                    aria-invalid={showErr && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo.trim())}
+                    onChange={(e) => { setReplyTo(e.target.value); setState("idle"); }} />
+                  <p className="hint">{t.contact.emailHint}</p>
+                  {showErr && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo.trim()) && <p className="msg" role="alert">✕ {t.contact.emailInvalid}</p>}
+                </div>
+              )}
+              <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />
               <div className="field wide">
                 <label htmlFor="f-about">{t.contact.about}</label>
                 <textarea id="f-about" rows={5} value={about} placeholder={t.contact.aboutHint}
                   aria-invalid={showErr} aria-describedby={showErr ? "f-err" : undefined}
                   className={showErr ? "is-error" : undefined}
                   onChange={(e) => { setAbout(e.target.value); if (showErr) setShowErr(false); }} />
-                {showErr && <p className="msg" id="f-err" role="alert">✕ {t.contact.required}</p>}
+                {showErr && !about.trim() && <p className="msg" id="f-err" role="alert">✕ {t.contact.required}</p>}
               </div>
               <div className="wide cta" style={{ marginTop: 0 }}>
-                <button className="btn primary" type="submit">{t.contact.send}</button>
+                <button className="btn primary" type="submit" disabled={state === "sending"}>
+                  {state === "sending" ? t.contact.sending : FORMSPREE_ID ? t.contact.send : t.contact.sendMail}
+                </button>
               </div>
+              <p className={`wide status-line ${state}`} role="status" aria-live="polite">
+                {state === "sent" && `✓ ${t.contact.sent}`}
+                {state === "failed" && `✕ ${t.contact.failed}`}
+              </p>
             </form>
             <p className="muted" style={{ marginTop: 24 }}>
               {t.contact.or} <a href={`mailto:${email}`}>{email}</a> · <a href={`https://github.com/${ORG}/.github/issues`}>{t.contact.issues}</a>

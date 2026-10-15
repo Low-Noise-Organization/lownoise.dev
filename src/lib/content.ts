@@ -2,6 +2,10 @@ export type Lang = "en" | "es";
 
 export const CONTACT_USER = "adricoding647";
 export const CONTACT_HOST = "gmail.com";
+// Public Formspree form id (e.g. "xyzabcde"). It is not a secret: it only accepts submissions.
+// Leave empty to fall back to the mailto-only form.
+export const FORMSPREE_ID = "";
+
 export const contactEmail = () => `${CONTACT_USER}@${CONTACT_HOST}`;
 
 export const T = {
@@ -66,17 +70,19 @@ export const T = {
     },
     contact: {
       title: "Contact",
-      lead: "Describe what you need. This opens your email app with the message ready to send; nothing is stored on this site.",
+      lead: "Describe what you need. We reply by email. This site stores nothing.",
       type: "What do you need?",
       types: ["Backend or API", "Android app", "Terminal or developer tool", "Website for a business", "Something else"],
       about: "About the project",
       aboutHint: "What problem should it solve, and for whom?",
       when: "When do you need it?",
       whens: ["No fixed date", "In 1–2 months", "As soon as possible"],
-      send: "Write the email",
+      send: "Send", sendMail: "Write the email",
       required: "Describe the project first.",
       or: "Or write directly to",
       issues: "Open an issue on GitHub",
+      email: "Your email", emailHint: "Needed so we can reply.", emailInvalid: "Enter a valid email.",
+      sending: "Sending…", sent: "Sent. We will reply to your email.", failed: "Could not send. Use the email link below instead.",
       subject: "Project enquiry",
       lines: { type: "Type", when: "When", about: "About" },
     },
@@ -145,17 +151,19 @@ export const T = {
     },
     contact: {
       title: "Contacto",
-      lead: "Describe lo que necesitas. Se abre tu app de correo con el mensaje listo para enviar; esta web no guarda nada.",
+      lead: "Describe lo que necesitas. Respondemos por correo. Esta web no guarda nada.",
       type: "¿Qué necesitas?",
       types: ["Backend o API", "App Android", "Herramienta de terminal o desarrollo", "Web para un negocio", "Otra cosa"],
       about: "Sobre el proyecto",
       aboutHint: "¿Qué problema debe resolver y para quién?",
       when: "¿Para cuándo?",
       whens: ["Sin fecha fija", "En 1–2 meses", "Cuanto antes"],
-      send: "Redactar el correo",
+      send: "Enviar", sendMail: "Redactar el correo",
       required: "Describe primero el proyecto.",
       or: "O escribe directamente a",
       issues: "Abrir una issue en GitHub",
+      email: "Tu correo", emailHint: "Necesario para poder responderte.", emailInvalid: "Introduce un correo válido.",
+      sending: "Enviando…", sent: "Enviado. Te responderemos a tu correo.", failed: "No se pudo enviar. Usa el enlace de correo de abajo.",
       subject: "Consulta de proyecto",
       lines: { type: "Tipo", when: "Plazo", about: "Sobre el proyecto" },
     },
