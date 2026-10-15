@@ -7,7 +7,7 @@ export const CONTACT_HOST = "gmail.com";
 export const FORMSPREE_ID = "xjygjgyy";
 
 // WhatsApp number in international format, digits only (e.g. "34600000000"). Leave empty to hide the button.
-export const WHATSAPP_PHONE = "";
+export const WHATSAPP_PHONE = "34644250482";
 // Client-side limits for the WhatsApp button: they deter casual abuse, they are not a hard guarantee.
 export const WA_MAX_PER_DAY = 2;
 export const WA_MIN_GAP_MS = 60_000;
