@@ -6,6 +6,13 @@ export const CONTACT_HOST = "gmail.com";
 // Leave empty to fall back to the mailto-only form.
 export const FORMSPREE_ID = "";
 
+// WhatsApp number in international format, digits only (e.g. "34600000000"). Leave empty to hide the button.
+export const WHATSAPP_PHONE = "";
+// Client-side limits for the WhatsApp button: they deter casual abuse, they are not a hard guarantee.
+export const WA_MAX_PER_DAY = 2;
+export const WA_MIN_GAP_MS = 60_000;
+export const WA_MIN_CHARS = 20;
+
 export const contactEmail = () => `${CONTACT_USER}@${CONTACT_HOST}`;
 
 export const T = {
@@ -91,6 +98,11 @@ export const T = {
       safety: "Never send passwords, keys or tokens through any channel. We will never ask for them.",
       email: "Your email", emailHint: "Needed so we can reply.", emailInvalid: "Enter a valid email.",
       sending: "Sending…", sent: "Sent. We will reply to your email.", failed: "Could not send. Use the email link below instead.",
+      whatsapp: "Send via WhatsApp",
+      waShort: "Write at least 20 characters so we understand the project.",
+      waWait: "Please wait a minute before trying again.",
+      waDaily: "Daily limit reached (2 messages). Use the email instead.",
+      waNote: "WhatsApp opens in a new tab with your message ready. Limited to 2 per day to avoid spam.",
       subject: "Project enquiry",
       lines: { type: "Type", when: "When", about: "About" },
     },
@@ -180,6 +192,11 @@ export const T = {
       safety: "No envíes contraseñas, claves ni tokens por ningún canal. Nunca te las pediremos.",
       email: "Tu correo", emailHint: "Necesario para poder responderte.", emailInvalid: "Introduce un correo válido.",
       sending: "Enviando…", sent: "Enviado. Te responderemos a tu correo.", failed: "No se pudo enviar. Usa el enlace de correo de abajo.",
+      whatsapp: "Enviar por WhatsApp",
+      waShort: "Escribe al menos 20 caracteres para entender el proyecto.",
+      waWait: "Espera un minuto antes de volver a intentarlo.",
+      waDaily: "Límite diario alcanzado (2 mensajes). Usa el correo.",
+      waNote: "WhatsApp se abre en una pestaña nueva con tu mensaje listo. Limitado a 2 al día para evitar spam.",
       subject: "Consulta de proyecto",
       lines: { type: "Tipo", when: "Plazo", about: "Sobre el proyecto" },
     },

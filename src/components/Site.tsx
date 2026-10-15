@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { ORG, projects, type Category } from "@/lib/projects";
-import { FORMSPREE_ID, T, contactEmail, type Lang } from "@/lib/content";
+import { FORMSPREE_ID, T, WA_MAX_PER_DAY, WA_MIN_CHARS, WA_MIN_GAP_MS, WHATSAPP_PHONE, contactEmail, type Lang } from "@/lib/content";
 
 type Theme = "grafito" | "washi";
 
@@ -61,6 +61,8 @@ export default function Site() {
   const [about, setAbout] = useState("");
   const [showErr, setShowErr] = useState(false);
   const [replyTo, setReplyTo] = useState("");
+  const [waMsg, setWaMsg] = useState("");
+  const [loadedAt] = useState(() => Date.now());
   const [state, setState] = useState<"idle" | "sending" | "sent" | "failed">("idle");
 
   useEffect(() => {
@@ -113,6 +115,23 @@ export default function Site() {
     }
     const body = `${c.lines.type}: ${c.types[typeIdx]}\n${c.lines.when}: ${c.whens[whenIdx]}\n\n${c.lines.about}:\n${about.trim()}\n`;
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(`Low Noise — ${c.subject}`)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const sendWhatsApp = () => {
+    const c = t.contact;
+    const text = about.trim();
+    if (text.length < WA_MIN_CHARS) { setWaMsg(c.waShort); return; }
+    const now = Date.now();
+    if (now - loadedAt < 3000) return; // too fast to be a person reading the form
+    let sent: number[] = [];
+    try { sent = (JSON.parse(localStorage.getItem("ln-wa") ?? "[]") as number[]).filter((x) => now - x < 86_400_000); } catch {}
+    if (sent.length >= WA_MAX_PER_DAY) { setWaMsg(c.waDaily); return; }
+    if (sent.length && now - sent[sent.length - 1] < WA_MIN_GAP_MS) { setWaMsg(c.waWait); return; }
+    try { localStorage.setItem("ln-wa", JSON.stringify([...sent, now])); } catch {}
+    setWaMsg("");
+    const msg = `Low Noise — ${c.subject}\n${c.lines.type}: ${c.types[typeIdx]}\n${c.lines.when}: ${c.whens[whenIdx]}\n\n${text}`;
+    // The number is not in the HTML, but it is in the JS bundle: anyone who reads the code can get it.
+    window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -280,11 +299,15 @@ export default function Site() {
                 <button className="btn primary" type="submit" disabled={state === "sending"}>
                   {state === "sending" ? t.contact.sending : FORMSPREE_ID ? t.contact.send : t.contact.sendMail}
                 </button>
+                {WHATSAPP_PHONE && (
+                  <button className="btn" type="button" onClick={sendWhatsApp}>{t.contact.whatsapp}</button>
+                )}
               </div>
               <p className={`wide status-line ${state}`} role="status" aria-live="polite">
                 {state === "sent" && `✓ ${t.contact.sent}`}
                 {state === "failed" && `✕ ${t.contact.failed}`}
               </p>
+              {WHATSAPP_PHONE && <p className="wide hint" role="status" aria-live="polite">{waMsg || t.contact.waNote}</p>}
             </form>
             <h3 className="channels-title">{t.contact.channelsTitle}</h3>
             <ul className="channels">
