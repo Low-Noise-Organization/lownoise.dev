@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# lownoise.dev
 
-## Getting Started
+Web del estudio de software **Low Noise**, con un sistema visual propio (tinta clara sobre casi negro, un color de señal, Newsreader + Hanken Grotesk + IBM Plex Mono). Bilingüe EN/ES. Next.js 16 con exportación estática, publicada en GitHub Pages: <https://low-noise-organization.github.io/lownoise.dev/>.
 
-First, run the development server:
+## Desarrollo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm ci
+npm run dev        # http://localhost:3000
+npm run lint
+GITHUB_PAGES=true npm run build   # genera ./out con el basePath /lownoise.dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+El despliegue es automático con cada push a `main` (`.github/workflows/deploy.yml`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/lib/content.ts`: todos los textos (EN/ES), el formulario y los límites de WhatsApp.
+- `src/lib/projects.ts`: catálogo de proyectos de código abierto. Las cifras de la web se calculan de aquí.
+- `src/components/`: `Site.tsx` (página), `ProjectIcon.tsx` (un icono de línea por proyecto), `hooks.ts`.
+- `src/app/globals.css`: sistema visual (tokens y componentes).
+- `src/app/fonts/`: tipografías incluidas, en subconjunto latino (todas OFL, licencias en `public/fonts-LICENSE.txt`).
+- `public/art/`: imágenes en media tinta (portada y una por proyecto).
+- `src/app/opengraph-image.png`: imagen al compartir el enlace (1200×630).
 
-## Learn More
+## Arte propio
 
-To learn more about Next.js, take a look at the following resources:
+Las imágenes son originales y se generan con `art/halftone_art.py`: esculpe cada escena con campos de distancia (SDF) y la pasa por una trama de media tinta a 45° en una sola tinta clara sobre transparente. Para regenerarlas:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+python3 -m venv .venv-art && .venv-art/bin/pip install numpy pillow
+.venv-art/bin/python art/halftone_art.py            # todas, a public/art/
+.venv-art/bin/python art/halftone_art.py voxen hero # solo algunas
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para añadir un proyecto: una función de escena en `halftone_art.py`, su entrada en `SCENES`, un icono en `ProjectIcon.tsx` y la correspondencia repo→imagen en `Site.tsx`.
 
-## Deploy on Vercel
+## Notas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Respeta `prefers-reduced-motion`: sin animaciones, las cifras aparecen ya terminadas.
+- El formulario usa Formspree (id público) y el botón de WhatsApp tiene límites en el cliente; no son garantías duras contra el abuso.
