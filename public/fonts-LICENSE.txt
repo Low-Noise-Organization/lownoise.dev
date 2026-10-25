@@ -1,0 +1,4 @@
+Fonts bundled with this site (subset to Latin), all under the SIL Open Font License 1.1 (https://openfontlicense.org):
+- Newsreader  (c) The Newsreader Project Authors. https://github.com/productiontype/Newsreader
+- Hanken Grotesk  (c) The Hanken Grotesk Project Authors. https://github.com/marcologous/hanken-grotesk
+- IBM Plex Mono  (c) IBM Corp. https://github.com/IBM/plex

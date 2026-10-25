@@ -25,8 +25,10 @@ export const T = {
       cta: "Tell us about your project",
       secondary: "See our work",
     },
+    dossier: { studio: "Studio", focus: "Focus", open: "Open source", langs: "Site languages", projects: "projects" },
+    stats: { projects: "open-source projects", languages: "languages", areas: "areas of work", active: "actively maintained" },
     services: {
-      title: "Services",
+      title: "Services", ask: "Ask about this", lead: "What we build, and the tools we use to build it.",
       items: [
         { name: "Backend and APIs", body: "REST services and data models that stay readable. Validation, error handling and tests from the first endpoint.", stack: "Java 21 · Spring Boot · PostgreSQL" },
         { name: "Android apps", body: "Native apps with a clear interface and honest behaviour when data or connectivity are missing.", stack: "Kotlin · Jetpack Compose" },
@@ -48,6 +50,8 @@ export const T = {
       title: "Selected work",
       note: "Our own projects, shown as they are, including what they cannot do yet.",
       labels: { problem: "Problem", decision: "Decision", status: "Status" },
+      view: "View repository",
+      dg: { scheduled: "scheduled", reference: "reference", source: "GTFS feed", image: "minimal image", lint: "lint", sign: "signature", compiler: "compiler", program: "N# program", desktop: "TUI desktop", boot: "boots in QEMU" },
       cases: [
         {
           repo: "ryoku-transit", name: "Ryoku Transit", kind: "Android app · Kotlin",
@@ -71,13 +75,14 @@ export const T = {
     },
     code: {
       title: "Open source",
-      all: "All", search: "Search projects", none: "No project matches.",
+      all: "All", search: "Search projects", none: "No project matches.", langs: "By language", of: "of",
       cat: { systems: "Systems", apps: "Apps", tools: "Tools", games: "Games", learning: "Learning" },
       status: { active: "active", experimental: "experimental", design: "design", stable: "stable" },
     },
     contact: {
       title: "Contact",
-      lead: "Describe what you need. We reply by email. This site stores nothing.",
+      expect: ["We reply by email.", "A one-page scope before any work starts.", "This site stores nothing."],
+      lead: "Describe what you need and we will take it from there.",
       type: "What do you need?",
       types: ["Backend or API", "Android app", "Terminal or developer tool", "Website for a business", "Something else"],
       about: "About the project",
@@ -107,6 +112,10 @@ export const T = {
       lines: { type: "Type", when: "When", about: "About" },
     },
     footer: "Built with care. Powered by curiosity.",
+    fontCredit: "Type: Newsreader, Hanken Grotesk, IBM Plex Mono (OFL)",
+    artCredit: "Artwork: generated in-house",
+    legal: "Third-party names and trademarks belong to their owners; no affiliation is implied.",
+    sourceNote: "Source on GitHub",
     ill: "01 // WINDOW",
     skip: "Skip to content",
   },
@@ -119,8 +128,10 @@ export const T = {
       cta: "Cuéntanos tu proyecto",
       secondary: "Ver nuestro trabajo",
     },
+    dossier: { studio: "Estudio", focus: "Enfoque", open: "Código abierto", langs: "Idiomas de la web", projects: "proyectos" },
+    stats: { projects: "proyectos de código abierto", languages: "lenguajes", areas: "áreas de trabajo", active: "con mantenimiento activo" },
     services: {
-      title: "Servicios",
+      title: "Servicios", ask: "Pregúntanos por esto", lead: "Lo que construimos y con qué herramientas.",
       items: [
         { name: "Backend y APIs", body: "Servicios REST y modelos de datos que se siguen entendiendo. Validación, gestión de errores y tests desde el primer endpoint.", stack: "Java 21 · Spring Boot · PostgreSQL" },
         { name: "Apps Android", body: "Apps nativas con interfaz clara y un comportamiento honesto cuando faltan datos o conexión.", stack: "Kotlin · Jetpack Compose" },
@@ -142,6 +153,8 @@ export const T = {
       title: "Trabajo destacado",
       note: "Proyectos propios, tal como son, incluido lo que todavía no hacen.",
       labels: { problem: "Problema", decision: "Decisión", status: "Estado" },
+      view: "Ver repositorio",
+      dg: { scheduled: "horario", reference: "referencia", source: "feed GTFS", image: "imagen mínima", lint: "lint", sign: "firma", compiler: "compilador", program: "programa N#", desktop: "escritorio TUI", boot: "arranca en QEMU" },
       cases: [
         {
           repo: "ryoku-transit", name: "Ryoku Transit", kind: "App Android · Kotlin",
@@ -165,13 +178,14 @@ export const T = {
     },
     code: {
       title: "Código abierto",
-      all: "Todos", search: "Buscar proyectos", none: "Ningún proyecto coincide.",
+      all: "Todos", search: "Buscar proyectos", none: "Ningún proyecto coincide.", langs: "Por lenguaje", of: "de",
       cat: { systems: "Sistemas", apps: "Apps", tools: "Herramientas", games: "Juegos", learning: "Aprendizaje" },
       status: { active: "activo", experimental: "experimental", design: "diseño", stable: "estable" },
     },
     contact: {
       title: "Contacto",
-      lead: "Describe lo que necesitas. Respondemos por correo. Esta web no guarda nada.",
+      expect: ["Respondemos por correo.", "Un alcance de una página antes de empezar.", "Esta web no guarda nada."],
+      lead: "Describe lo que necesitas y seguimos desde ahí.",
       type: "¿Qué necesitas?",
       types: ["Backend o API", "App Android", "Herramienta de terminal o desarrollo", "Web para un negocio", "Otra cosa"],
       about: "Sobre el proyecto",
@@ -201,6 +215,10 @@ export const T = {
       lines: { type: "Tipo", when: "Plazo", about: "Sobre el proyecto" },
     },
     footer: "Hecho con cuidado. Movido por la curiosidad.",
+    fontCredit: "Tipografía: Newsreader, Hanken Grotesk, IBM Plex Mono (OFL)",
+    artCredit: "Ilustraciones: generadas en casa",
+    legal: "Los nombres y marcas de terceros pertenecen a sus propietarios; no se implica ninguna afiliación.",
+    sourceNote: "Código en GitHub",
     ill: "01 // VENTANA",
     skip: "Saltar al contenido",
   },
