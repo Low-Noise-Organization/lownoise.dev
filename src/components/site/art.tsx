@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { AI_ART } from "@/lib/ai-art";
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -27,5 +28,5 @@ export function ProjectArt({ repo, width = 960, height = 720, lazy = true }: { r
     );
   }
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={`${BASE}/art/${ART[repo]}.png`} alt="" width={width} height={height} loading={lazy ? "lazy" : undefined} decoding="async" />;
+  return <img src={`${BASE}/art/${ART[repo]}.${AI_ART.includes(ART[repo]) ? "webp" : "png"}`} alt="" width={width} height={height} loading={lazy ? "lazy" : undefined} decoding="async" />;
 }
