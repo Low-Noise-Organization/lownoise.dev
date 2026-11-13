@@ -10,7 +10,7 @@ const mono = localFont({ src: [{ path: "./fonts/GeistMono.woff2", weight: "100 9
 const origin = "https://low-noise-organization.github.io";
 const siteUrl = `${origin}/lownoise.dev/`; // Pages serves the site under /lownoise.dev/
 const description =
-  "Low Noise is a software studio: backend services, Android apps, command-line tools and small business websites. Scoped in writing, built in small steps, documented and handed over.";
+  "Low Noise is a software studio: backend services, Android apps, command-line tools, small business websites, and AI and process automation for businesses. Scoped in writing, built in small steps, documented and handed over.";
 
 export const metadata: Metadata = {
   // metadataBase is the origin only: Next already prefixes the basePath to the generated image paths.
@@ -44,7 +44,7 @@ const jsonLd = {
       logo: `${siteUrl}favicon.svg`,
       description,
       sameAs: [`https://github.com/${ORG}`, "https://www.youtube.com/@Low_Noise-n4e"],
-      knowsAbout: ["Backend development", "Android development", "Rust", "Developer tools", "Web development"],
+      knowsAbout: ["Backend development", "Android development", "Rust", "Developer tools", "Web development", "Process automation", "Applied AI"],
     },
     { "@type": "WebSite", "@id": `${siteUrl}#site`, url: siteUrl, name: "Low Noise", inLanguage: ["en", "es"], publisher: { "@id": `${siteUrl}#org` } },
   ],

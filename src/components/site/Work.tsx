@@ -13,7 +13,7 @@ export default function Work({ lang }: { lang: Lang }) {
   return (
     <section id="work" className="sec sec-w">
       <div className="wrap">
-        <SecHead n={3} label={t.work.title} lead={t.work.note} />
+        <SecHead n={4} label={t.work.title} lead={t.work.note} />
         <div className="cases">
           {t.work.cases.map((c, i) => (
             <article className={`case${i % 2 ? " flip" : ""}`} key={c.repo}>

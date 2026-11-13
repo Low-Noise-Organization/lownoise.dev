@@ -67,7 +67,7 @@ export default function Contact({ lang, typeIdx, setTypeIdx }: { lang: Lang; typ
     <section id="contact" className="sec sec-w">
       <div className="wrap contact-grid">
         <div className="contact-side">
-          <SecHead n={5} label={c.title} lead={c.lead} />
+          <SecHead n={6} label={c.title} lead={c.lead} />
           <ul className="expect">{c.expect.map((x) => <li key={x}><Check className="ic" />{x}</li>)}</ul>
           <h3 className="mono ch-title">{c.channelsTitle.toUpperCase()}</h3>
           <ul className="channels">

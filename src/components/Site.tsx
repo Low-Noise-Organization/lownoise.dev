@@ -8,6 +8,7 @@ import { useCount, useScrollSpy, useSeen } from "./hooks";
 import Header, { SECTIONS } from "./site/Header";
 import Hero from "./site/Hero";
 import Services from "./site/Services";
+import AI from "./site/AI";
 import Process from "./site/Process";
 import Work from "./site/Work";
 import Code, { LANGS } from "./site/Code";
@@ -49,6 +50,7 @@ export default function Site() {
           </div>
         </div>
         <Services lang={lang} onAsk={setTypeIdx} />
+        <AI lang={lang} onAsk={setTypeIdx} />
         <Process lang={lang} />
         <Work lang={lang} />
         <Code lang={lang} />

@@ -6,11 +6,11 @@ import { Reveal } from "../ui";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-export function SecHead({ n, label, lead }: { n: number; label: string; lead?: string }) {
+export function SecHead({ n, label, lead, title }: { n: number; label: string; lead?: string; title?: string }) {
   return (
     <header className="sec-head">
       <p className="mono sh">{pad(n)} / {label.toUpperCase()}</p>
-      <h2 className="h2">{label}.</h2>
+      <h2 className="h2">{title ?? `${label}.`}</h2>
       {lead && <p className="sec-lead">{lead}</p>}
     </header>
   );

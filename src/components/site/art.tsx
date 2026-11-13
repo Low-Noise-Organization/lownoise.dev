@@ -1,9 +1,8 @@
 import type { ReactNode } from "react";
-import { AI_ART } from "@/lib/ai-art";
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-// Halftone illustration per project (rendered in-house by art/halftone_art.py).
+// Vector illustration per project (public/art/<slug>.svg, drawn by art/make_icons.py).
 export const ART: Record<string, string> = {
   "TUI-OS_Arching": "tui-os", "N-Sharp": "n-sharp", lownoiseOS: "vega-os", Voxen: "voxen", sysTUI: "systui", FileTUI: "filetui",
   Low_Noise_BashPrompt: "prompt", LowNoise_Contact_Suite: "contact-suite", "ryoku-transit": "transit", AndroidDrop: "androiddrop",
@@ -28,5 +27,5 @@ export function ProjectArt({ repo, width = 960, height = 720, lazy = true }: { r
     );
   }
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={`${BASE}/art/${ART[repo]}.${AI_ART.includes(ART[repo]) ? "webp" : "png"}`} alt="" width={width} height={height} loading={lazy ? "lazy" : undefined} decoding="async" />;
+  return <img src={`${BASE}/art/${ART[repo]}.svg`} alt="" width={width} height={height} loading={lazy ? "lazy" : undefined} decoding="async" />;
 }

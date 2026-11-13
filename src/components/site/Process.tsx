@@ -9,7 +9,7 @@ export default function Process({ lang }: { lang: Lang }) {
   return (
     <section id="process" className="sec sec-k">
       <div className="wrap">
-        <SecHead n={2} label={t.process.title} />
+        <SecHead n={3} label={t.process.title} />
         <ol className="steps">
           {t.process.steps.map(([title, body], i) => (
             <li key={title}>

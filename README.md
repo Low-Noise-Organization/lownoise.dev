@@ -21,7 +21,7 @@ El despliegue es automático con cada push a `main` (`.github/workflows/deploy.y
 - `src/lib/projects.ts`: catálogo de proyectos de código abierto (las cifras de la web se calculan de aquí).
 - `src/lib/lang.ts`: idioma compartido (localStorage + `<html lang>`) para la web y las páginas ocultas.
 - `src/components/site/`: secciones de la portada (`Header`, `Hero`, `Services`, `Process`, `Work`, `Code`, `Contact`, `Footer`); `Site.tsx` las compone.
-- `src/components/three/`: `NoiseSphere.tsx` (esfera de ruido, también en 404 y reseñas) y `SortScene.tsx` (barras 3D del visualizador).
+- `src/components/three/`: `NoiseSphere.tsx` (esfera de ruido, también en 404 y reseñas), `Robot.tsx` (robot de la sección de IA, sigue al cursor) y `SortScene.tsx` (barras 3D del visualizador).
 - `src/components/lab/`: páginas ocultas. `src/app/globals.css`: todo el sistema visual.
 - `src/app/fonts/`: Geist y Geist Mono (SIL OFL, subconjunto latino; licencia en `public/fonts-LICENSE.txt`).
 
@@ -39,15 +39,15 @@ No están enlazadas desde la portada, llevan `noindex` y `robots.txt` las excluy
 
 ## Arte propio
 
-Las imágenes son originales y se generan con `art/halftone_art.py`: esculpe cada escena con campos de distancia (SDF) y la pasa por una trama de media tinta a 45° en una sola tinta clara sobre transparente. Para regenerarlas:
+Todo el arte es propio y vectorial, sin imágenes de IA:
 
-```bash
-python3 -m venv .venv-art && .venv-art/bin/pip install numpy pillow
-.venv-art/bin/python art/halftone_art.py            # todas, a public/art/
-.venv-art/bin/python art/halftone_art.py voxen hero # solo algunas
-```
+- **Imágenes de proyecto** (`public/art/<slug>.svg`): las dibuja `art/make_icons.py`, con un sistema común (placa negra 4:3, trama de puntos, marcas de esquina y un emblema geométrico en blanco y grises). Cada una pesa 2-4 KB. `python3 art/make_icons.py [--sheet]` las regenera (y `--sheet` genera una hoja de contactos para revisarlas).
+- **Proyectos con icono propio** (Ryoku Transit, Music Player, CipherKey): usan el de su repositorio (`public/icons/`), en gris y a color al pasar el cursor.
+- **Logo** (`src/components/Mark.tsx`, `public/logo.svg`, `public/favicon.svg`): un anillo atravesado por una onda que sale convertida en recta.
+- **Imagen al compartir** (`src/app/opengraph-image.png` y `twitter-image.png`): `node art/make_og.mjs` (necesita Playwright y Chromium).
+- `public/art/hero.png` (respaldo sin WebGL) sigue generándose con `art/halftone_art.py`.
 
-Para añadir un proyecto: una función de escena en `halftone_art.py`, su entrada en `SCENES`, un icono en `ProjectIcon.tsx` y la correspondencia repo→imagen (`ART`) en `components/site/Code.tsx`.
+Para añadir un proyecto: una función de emblema en `make_icons.py` y su entrada en `EMBLEMS`, un icono de línea en `ProjectIcon.tsx` y la correspondencia repo→imagen (`ART`) en `components/site/art.tsx`.
 
 ## Notas
 

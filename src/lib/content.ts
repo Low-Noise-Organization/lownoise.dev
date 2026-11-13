@@ -17,11 +17,11 @@ export const contactEmail = () => `${CONTACT_USER}@${CONTACT_HOST}`;
 
 export const T = {
   en: {
-    nav: { services: "Services", process: "Process", work: "Work", code: "Open source", contact: "Contact" },
+    nav: { services: "Services", ai: "AI", process: "Process", work: "Work", code: "Open source", contact: "Contact" },
     hero: {
       kicker: "Low Noise // Software studio",
       title: "Custom software, with less noise.",
-      lead: "Backend services, Android apps, command-line tools and small business websites. Scoped in writing, built in small steps, documented and handed over.",
+      lead: "Backend services, Android apps, command-line tools, small business websites, and AI and automation for businesses. Scoped in writing, built in small steps, documented and handed over.",
       cta: "Tell us about your project",
       secondary: "See our work",
     },
@@ -35,6 +35,28 @@ export const T = {
         { name: "Terminal and developer tools", body: "Fast CLIs, TUIs and build tooling that small teams can actually maintain.", stack: "Rust · Java · Shell" },
         { name: "Websites for small businesses", body: "Fast, accessible static sites in your visual identity, with no CMS to keep alive.", stack: "HTML · CSS · TypeScript" },
       ],
+    },
+    ai: {
+      label: "AI & Automation",
+      title: "AI and automation, without the noise.",
+      lead: "We also automate repetitive work and bring AI into small and medium businesses: practical, measurable and scoped in writing.",
+      intro: "Most businesses do not need an AI strategy. They need the repetitive part of the week to stop eating hours.",
+      items: [
+        { name: "Process automation", body: "Invoices, orders, spreadsheets, emails and reports that move on their own. We connect the tools you already use and remove the manual copying.", stack: "APIs · Webhooks · Scheduled jobs" },
+        { name: "AI assistants for your business", body: "Chat and email assistants that answer from your own documents: prices, opening hours, order status, FAQs. They hand over to a person when they are not sure.", stack: "LLMs · Retrieval · Your data" },
+        { name: "Document and data processing", body: "Read invoices, forms and PDFs, extract the fields, check them and drop them into your system.", stack: "OCR · Extraction · Validation" },
+        { name: "Integrations and internal tools", body: "Small dashboards and tools that join your systems: CRM, accounting, calendar, WhatsApp and your website.", stack: "REST · Webhooks · Dashboards" },
+      ],
+      howTitle: "How we approach it",
+      how: [
+        ["One process first", "We pick the task that costs the most time and automate only that. If it works, we continue."],
+        ["A person stays in control", "Anything an AI decides can be reviewed, corrected or switched off. Doubtful cases go to a human."],
+        ["Measured, not promised", "We agree how to measure the result (hours saved, errors avoided) before building, and we tell you if AI is not the right tool."],
+      ],
+      privacy: "Before connecting anything we explain which provider processes which data.",
+      cta: "Tell us what you would automate",
+      hint: "Move the cursor: it follows you",
+      robot: "Interactive 3D robot that looks at the cursor",
     },
     process: {
       title: "How we work",
@@ -84,7 +106,7 @@ export const T = {
       expect: ["We reply by email.", "A one-page scope before any work starts.", "This site stores nothing."],
       lead: "Describe what you need and we will take it from there.",
       type: "What do you need?",
-      types: ["Backend or API", "Android app", "Terminal or developer tool", "Website for a business", "Something else"],
+      types: ["Backend or API", "Android app", "Terminal or developer tool", "Website for a business", "AI or process automation", "Something else"],
       about: "About the project",
       aboutHint: "What problem should it solve, and for whom?",
       when: "When do you need it?",
@@ -120,11 +142,11 @@ export const T = {
     skip: "Skip to content",
   },
   es: {
-    nav: { services: "Servicios", process: "Proceso", work: "Trabajo", code: "Código abierto", contact: "Contacto" },
+    nav: { services: "Servicios", ai: "IA", process: "Proceso", work: "Trabajo", code: "Código abierto", contact: "Contacto" },
     hero: {
       kicker: "Low Noise // Estudio de software",
       title: "Software a medida, con menos ruido.",
-      lead: "Servicios backend, apps Android, herramientas de línea de comandos y webs para pequeños negocios. Alcance por escrito, desarrollo en pasos cortos, documentación y entrega.",
+      lead: "Servicios backend, apps Android, herramientas de línea de comandos, webs para pequeños negocios, e IA y automatización para empresas. Alcance por escrito, desarrollo en pasos cortos, documentación y entrega.",
       cta: "Cuéntanos tu proyecto",
       secondary: "Ver nuestro trabajo",
     },
@@ -138,6 +160,28 @@ export const T = {
         { name: "Herramientas de terminal y desarrollo", body: "CLIs, TUIs y utilidades de build rápidas que un equipo pequeño puede mantener.", stack: "Rust · Java · Shell" },
         { name: "Webs para pequeños negocios", body: "Sitios estáticos rápidos y accesibles con tu identidad visual, sin un CMS que mantener vivo.", stack: "HTML · CSS · TypeScript" },
       ],
+    },
+    ai: {
+      label: "IA y automatización",
+      title: "IA y automatización, con menos ruido.",
+      lead: "También automatizamos trabajo repetitivo e implantamos IA en pequeños y medianos negocios: práctico, medible y con alcance por escrito.",
+      intro: "La mayoría de negocios no necesita una estrategia de IA. Necesita que la parte repetitiva de la semana deje de comerse horas.",
+      items: [
+        { name: "Automatización de procesos", body: "Facturas, pedidos, hojas de cálculo, correos e informes que se mueven solos. Conectamos las herramientas que ya usas y quitamos el copiar y pegar.", stack: "APIs · Webhooks · Tareas programadas" },
+        { name: "Asistentes de IA para tu negocio", body: "Asistentes de chat y correo que responden con tus propios documentos: precios, horarios, estado de pedidos, preguntas frecuentes. Pasan a una persona cuando no están seguros.", stack: "LLMs · Recuperación · Tus datos" },
+        { name: "Procesado de documentos y datos", body: "Leer facturas, formularios y PDFs, extraer los campos, comprobarlos y dejarlos en tu sistema.", stack: "OCR · Extracción · Validación" },
+        { name: "Integraciones y herramientas internas", body: "Paneles y herramientas pequeñas que unen tus sistemas: CRM, contabilidad, calendario, WhatsApp y tu web.", stack: "REST · Webhooks · Paneles" },
+      ],
+      howTitle: "Cómo lo abordamos",
+      how: [
+        ["Primero un proceso", "Elegimos la tarea que más tiempo cuesta y automatizamos solo esa. Si funciona, seguimos."],
+        ["Una persona al mando", "Todo lo que decide una IA se puede revisar, corregir o apagar. Los casos dudosos pasan a un humano."],
+        ["Medido, no prometido", "Acordamos cómo medir el resultado (horas ahorradas, errores evitados) antes de construir, y te decimos si la IA no es la herramienta adecuada."],
+      ],
+      privacy: "Antes de conectar nada te explicamos qué proveedor procesa qué datos.",
+      cta: "Cuéntanos qué automatizarías",
+      hint: "Mueve el cursor: te sigue",
+      robot: "Robot 3D interactivo que mira al cursor",
     },
     process: {
       title: "Cómo trabajamos",
@@ -187,7 +231,7 @@ export const T = {
       expect: ["Respondemos por correo.", "Un alcance de una página antes de empezar.", "Esta web no guarda nada."],
       lead: "Describe lo que necesitas y seguimos desde ahí.",
       type: "¿Qué necesitas?",
-      types: ["Backend o API", "App Android", "Herramienta de terminal o desarrollo", "Web para un negocio", "Otra cosa"],
+      types: ["Backend o API", "App Android", "Herramienta de terminal o desarrollo", "Web para un negocio", "IA o automatización de procesos", "Otra cosa"],
       about: "Sobre el proyecto",
       aboutHint: "¿Qué problema debe resolver y para quién?",
       when: "¿Para cuándo?",

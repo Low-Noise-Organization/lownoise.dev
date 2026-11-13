@@ -7,7 +7,7 @@ import { T, type Lang } from "@/lib/content";
 import { ArrowRight, Cross } from "../Icons";
 import Mark from "../Mark";
 
-export const SECTIONS = ["services", "process", "work", "code", "contact"] as const;
+export const SECTIONS = ["services", "ai", "process", "work", "code", "contact"] as const;
 
 interface Props {
   lang: Lang;

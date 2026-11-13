@@ -40,7 +40,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# AI-generated originals (only the processed output is versioned)
-art/ai-input/*
-!art/ai-input/README.md
-public/logo-preview.png

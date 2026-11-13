@@ -45,7 +45,7 @@ export default function Code({ lang }: { lang: Lang }) {
   return (
     <section id="code" className="sec sec-k">
       <div className="wrap">
-        <SecHead n={4} label={t.code.title} />
+        <SecHead n={5} label={t.code.title} />
         <p className="mono count">{pad(shown.length)} / {projects.length}</p>
         <div className="tools">
           <div className="chips" role="group" aria-label="Category">
