@@ -5,16 +5,10 @@ import { ORG, projects, type Category } from "@/lib/projects";
 import { T, type Lang } from "@/lib/content";
 import { ArrowUpRight } from "../Icons";
 import ProjectIcon from "../ProjectIcon";
+import { ProjectArt } from "./art";
 import { SecHead } from "./Services";
 
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const CATS: Category[] = ["systems", "apps", "tools", "games", "learning"];
-export const ART: Record<string, string> = {
-  "TUI-OS_Arching": "tui-os", "N-Sharp": "n-sharp", lownoiseOS: "vega-os", Voxen: "voxen", sysTUI: "systui", FileTUI: "filetui",
-  Low_Noise_BashPrompt: "prompt", LowNoise_Contact_Suite: "contact-suite", "ryoku-transit": "transit", AndroidDrop: "androiddrop",
-  MusicPlayer: "music-player", CipherKey: "cipherkey", "Pretty-Chat": "pchat", NotesAppMobile: "misnotas", CheckMateTUI: "chess-tui",
-  RetroTUIGames: "retrotui", Master_Chess: "master-chess", "Community-JavaRPG": "hollowforge", De_0_a_Java: "de-0-a-java", Exercism_Stack_Lenguages: "exercism",
-};
 export const LANGS = Object.entries(
   projects.reduce<Record<string, number>>((a, p) => ((a[p.lang] = (a[p.lang] ?? 0) + 1), a), {}),
 ).sort((a, b) => b[1] - a[1]);
@@ -36,9 +30,16 @@ export default function Code({ lang }: { lang: Lang }) {
   }, [cat, lg, q]);
 
   // The preview follows the mouse without re-rendering (mouse only; touch gets the plain list).
+  // It sits below and beside the cursor, never above: above it would cover the filter buttons while
+  // the cursor is on the first rows. It flips to the left near the right edge and stays inside the viewport.
   const follow = (e: React.PointerEvent) => {
-    if (e.pointerType !== "mouse" || !peekEl.current) return;
-    peekEl.current.style.transform = `translate3d(${e.clientX + 28}px, ${e.clientY - 110}px, 0)`;
+    const el = peekEl.current;
+    if (e.pointerType !== "mouse" || !el) return;
+    const w = el.offsetWidth, h = el.offsetHeight, gap = 24;
+    let x = e.clientX + gap;
+    if (x + w > innerWidth - 12) x = e.clientX - gap - w;
+    const y = Math.max(12, Math.min(e.clientY + gap, innerHeight - h - 12));
+    el.style.transform = `translate3d(${Math.max(12, x)}px, ${y}px, 0)`;
   };
 
   return (
@@ -77,10 +78,7 @@ export default function Code({ lang }: { lang: Lang }) {
         )}
       </div>
       <div className="peek" ref={peekEl} data-on={peek ? "1" : "0"} aria-hidden="true">
-        {peek && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={`${BASE}/art/${ART[peek]}.png`} alt="" width={960} height={720} />
-        )}
+        {peek && <ProjectArt repo={peek} lazy={false} />}
       </div>
     </section>
   );

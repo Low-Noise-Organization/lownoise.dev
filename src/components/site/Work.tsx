@@ -4,10 +4,9 @@ import { ORG } from "@/lib/projects";
 import { T, type Lang } from "@/lib/content";
 import { ArrowUpRight } from "../Icons";
 import { Reveal, Tilt } from "../ui";
+import { ProjectArt } from "./art";
 import { SecHead } from "./Services";
 
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const caseArt = ["transit", "voxen", "tui-os"];
 
 export default function Work({ lang }: { lang: Lang }) {
   const t = T[lang];
@@ -21,8 +20,7 @@ export default function Work({ lang }: { lang: Lang }) {
               <Reveal className="case-plate">
                 <Tilt>
                   <a className="plate" href={`https://github.com/${ORG}/${c.repo}`} tabIndex={-1} aria-hidden="true">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`${BASE}/art/${caseArt[i]}.png`} alt="" width={960} height={720} loading="lazy" decoding="async" />
+                    <ProjectArt repo={c.repo} />
                     <span className="cap mono">{String(i + 1).padStart(2, "0")} / {c.name.toUpperCase()}</span>
                   </a>
                 </Tilt>

@@ -22,6 +22,8 @@ export default function Header({ lang, setLang, active, progress, home = true }:
   const t = T[lang];
   const [open, setOpen] = useState(false);
   const [hide, setHide] = useState(false);
+  const [tone, setTone] = useState<"k" | "w">("k");
+  const [atTop, setAtTop] = useState(true);
   const lastY = useRef(0);
   const href = (id: string) => (home ? `#${id}` : `/#${id}`);
 
@@ -30,6 +32,10 @@ export default function Header({ lang, setLang, active, progress, home = true }:
     lastY.current = scrollY;
     const on = () => {
       const y = scrollY;
+      // Colour of the section under the bar: the bar takes the opposite colour so it never blends into the content.
+      const onWhite = [...document.querySelectorAll(".sec-w")].some((el) => { const r = el.getBoundingClientRect(); return r.top <= 34 && r.bottom > 34; });
+      setTone(onWhite ? "w" : "k");
+      setAtTop(y < 24);
       if (y < 80 || y < lastY.current - 6) setHide(false);
       else if (y > lastY.current + 6) setHide(true);
       lastY.current = y;
@@ -47,7 +53,7 @@ export default function Header({ lang, setLang, active, progress, home = true }:
   }, [open]);
 
   return (
-    <header className={`top${hide ? " hide" : ""}`}>
+    <header className={`top${hide ? " hide" : ""}${atTop ? " at-top" : ""}`} data-tone={tone}>
       <div className="top-in">
         <Link className="brand" href={home ? "#top" : "/"} aria-label="Low Noise"><Mark className="mark" />Low Noise</Link>
         <nav className="menu" aria-label="Main">
