@@ -65,3 +65,8 @@ export function useCount(to: number, go: boolean, ms = 1100) {
   }, [to, go, ms, reduced]);
   return reduced && go ? to : v;
 }
+
+const MOBILE = "(max-width: 820px), (pointer: coarse)";
+const subMobile = (fn: () => void) => { const m = matchMedia(MOBILE); m.addEventListener("change", fn); return () => m.removeEventListener("change", fn); };
+/** Small or touch screens: fewer particles, centred 3D object. */
+export const useMobile = () => useSyncExternalStore(subMobile, () => matchMedia(MOBILE).matches, () => false);
